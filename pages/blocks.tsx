@@ -1,6 +1,6 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
 import { getBlocks, Block } from 'data/blocks';
 
 interface IndexPageProps {
@@ -9,11 +9,8 @@ interface IndexPageProps {
 
 const IndexPage: NextPage<IndexPageProps> = ({ blocks }) => {
   return (
-    <Layout title="Block Explorer">
-      <h1>Block Explorer</h1>
-      <h2>
-        <Link href="/blocks"><a>Blocks</a></Link>
-      </h2>
+    <Layout title="Blocks">
+      <h1>Blocks</h1>
       <ul>
         {blocks.map((block) => (
           <li key={block.hash}>
