@@ -18,16 +18,19 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <nav>
         <Link href="/">
           <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
+        </Link>
+        {' | '}
+        <Link href="/blocks">
+          <a>Blocks</a>
+        </Link>
+        {' | '}
+        <Link href="/transactions">
+          <a>Transactions</a>
+        </Link>
+        {' | '}
+        <Link href="/addresses">
+          <a>Addresses</a>
+        </Link>
       </nav>
     </header>
     {children}
@@ -36,6 +39,6 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <span>I'm here to stay (Footer)</span>
     </footer>
   </div>
-)
+);
 
-export default Layout
+export default Layout;

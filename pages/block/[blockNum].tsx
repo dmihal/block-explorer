@@ -18,6 +18,14 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
     <Layout title="Blocks">
       <h1>Block {block.number}</h1>
       <pre>{JSON.stringify(block, null, '  ')}</pre>
+      <h2>Transactions</h2>
+      <ul>
+        {block.transactions.map(tx => (
+          <li key={tx}>
+            <Link href="/transaction/[txHash]" as={`/transaction/${tx}`}><a>{tx}</a></Link>
+          </li>
+        ))}
+      </ul>
     </Layout>
   );
 };

@@ -14,7 +14,7 @@ const blocks: Block[] = [
     parentHash: null,
     size: 10000,
     timestamp: Date.now(),
-    transactions: [],
+    transactions: ['0x6bf6ca63cb47cde2195bbf95f2f1e0b048b4d361e0bba3f70bcbea9a284e133e'],
   },
   {
     number: 1,
@@ -22,7 +22,7 @@ const blocks: Block[] = [
     parentHash: '0xef95f2f1ed3ca60b048b4bf67cde2195961e0bba6f70bcbea9a2c4e133e34b46',
     size: 10000,
     timestamp: Date.now(),
-    transactions: [],
+    transactions: ['0x7cde2170bcbea9a284e133e95bbf95f2f1e0b046bf6ca63cb48b4d361e0bba3f'],
   },
   {
     number: 2,

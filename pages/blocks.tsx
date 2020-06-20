@@ -3,18 +3,18 @@ import Link from 'next/link';
 import Layout from 'components/Layout';
 import { getBlocks, Block } from 'data/blocks';
 
-interface IndexPageProps {
+interface BlocksPageProps {
   blocks: Block[];
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ blocks }) => {
+const BlocksPage: NextPage<IndexPageProps> = ({ blocks }) => {
   return (
     <Layout title="Blocks">
       <h1>Blocks</h1>
       <ul>
         {blocks.map((block) => (
           <li key={block.hash}>
-            <Link href={`/block/${block.number}`}>
+            <Link href="/block/[blockNum]" as={`/block/${block.number}`}>
               <a>Block {block.number}</a>
             </Link>
           </li>
@@ -24,7 +24,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ blocks }) => {
   );
 };
 
-export default IndexPage;
+export default BlocksPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const blocks = getBlocks();
