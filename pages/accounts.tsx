@@ -14,7 +14,7 @@ const AccountsPage: NextPage<AccountsPageProps> = ({ addresses }) => {
       <ul>
         {addresses.map((address: Address) => (
           <li key={address.address}>
-            <Link href="/address/[blockNum]" as={`/address/${address.address}`}>
+            <Link href="/address/[address]" as={`/address/${address.address}`}>
               <a>{address.address}</a>
             </Link>
           </li>

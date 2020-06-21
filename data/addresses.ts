@@ -29,12 +29,10 @@ for (const transaction of Object.values(transactions)) {
     }
 
     const address = addresses[output.account];
-    if (address && address.balances[output.asset]) {
-      address.balances[output.asset] = bn(address.balances[output.asset]).add(bn(output.value)).toString();
+    address.balances[output.asset] = bn(address.balances[output.asset]).add(bn(output.value)).toString();
 
-      if (address.transactions.indexOf(transaction.hash) === -1) {
-        address.transactions.push(transaction.hash);
-      }
+    if (address.transactions.indexOf(transaction.hash) === -1) {
+      address.transactions.push(transaction.hash);
     }
   }
 }
