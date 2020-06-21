@@ -13,7 +13,7 @@ export interface Transaction {
   signature: string;
 }
 
-const transactions: { [hash: string]: Transaction } = {
+export const transactions: { [hash: string]: Transaction } = {
   '0x6bf6ca63cb47cde2195bbf95f2f1e0b048b4d361e0bba3f70bcbea9a284e133e': {
     hash: '0x6bf6ca63cb47cde2195bbf95f2f1e0b048b4d361e0bba3f70bcbea9a284e133e',
     block: 0,
