@@ -17,8 +17,8 @@ const IndexPage: NextPage<IndexPageProps> = ({ blocks }) => {
       <ul>
         {blocks.map((block) => (
           <li key={block.hash}>
-            <Link href="/block/[blockNum]" as={`/block/${block.number}`}>
-              <a>Block {block.number}</a>
+            <Link href="/block/[blockNum]" as={`/block/${block.height}`}>
+              <a>Block {block.height}</a>
             </Link>
           </li>
         ))}

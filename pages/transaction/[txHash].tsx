@@ -4,11 +4,11 @@ import Router from 'next/router';
 import Layout from 'components/Layout';
 import { getTransaction, Transaction } from 'data/transactions';
 
-interface IndexPageProps {
+interface TransactionPageProps {
   block: Transaction | null;
 }
 
-const TransactionPage: NextPage<BlockPageProps> = ({ transaction }) => {
+const TransactionPage: NextPage<TransactionPageProps> = ({ transaction }) => {
   if (!transaction) {
     Router.push('/transactions');
     return null;
@@ -17,16 +17,30 @@ const TransactionPage: NextPage<BlockPageProps> = ({ transaction }) => {
   return (
     <Layout title="Transaction">
       <h1>Transaction {transaction.hash}</h1>
+      
+      {transaction.root !== null && (
+        <div>
+          Root:
+          <Link href="/root/[rootHash]" as={`/root/${transaction.root}`}><a>{transaction.root}</a></Link>
+        </div>
+      )}
+      {transaction.block !== null && (
+        <div>
+          Block:
+          <Link href="/block/[blockNum]" as={`/block/${transaction.block}`}><a>{transaction.block}</a></Link>
+        </div>
+      )}
+
       <pre>{JSON.stringify(transaction, null, '  ')}</pre>
       <h2>Inputs</h2>
       <ul>
-        {transaction.inputs.map((input, i) => (
+        {transaction.inputs.map((input: any, i: number) => (
           <li key={i}>{JSON.stringify(input)}</li>
         ))}
       </ul>
       <h2>Outputs</h2>
       <ul>
-        {transaction.outputs.map((output, i) => (
+        {transaction.outputs.map((output: any, i: number) => (
           <li key={i}>{JSON.stringify(output)}</li>
         ))}
       </ul>

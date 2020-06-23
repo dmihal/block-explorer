@@ -17,6 +17,14 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
   return (
     <Layout title="Blocks">
       <h1>Block {block.number}</h1>
+
+      {block.block !== null && (
+        <div>
+          Parent:
+          <Link href="/block/[blockNum]" as={`/block/${block.parentHash}`}><a>{block.parentHash}</a></Link>
+        </div>
+      )}
+
       <pre>{JSON.stringify(block, null, '  ')}</pre>
       <h2>Roots</h2>
       <ul>

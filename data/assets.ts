@@ -7,7 +7,7 @@ interface Asset {
   decimals: number;
 }
 
-const assets: { [address: string]: Asset } = {
+export const assets: { [address: string]: Asset } = {
   '0x6b175474e89094c44da98b954eedeac495271d0f': {
     address: '0x6b175474e89094c44da98b954eedeac495271d0f',
     name: 'Dai',
