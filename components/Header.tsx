@@ -32,7 +32,7 @@ const Header = () => {
           font-family: Poppins;
           font-size: 27px;
           font-weight: 500;
-          margin: 68px 0 50px;
+          padding: 68px 0 50px;
         }
 
         .logo {

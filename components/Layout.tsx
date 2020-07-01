@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react'
-import Link from 'next/link'
 import Head from 'next/head';
 import Header from './Header';
 
@@ -8,9 +7,9 @@ type Props = {
   title?: string
 }
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => {
+const Layout: React.FC<Props> = ({ children, title = 'This is the default title' }) => {
   return (
-    <main>
+    <div className="container">
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -19,27 +18,33 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
       </Head>
 
       <Header />
-      {children}
+      <main>{children}</main>
       <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
       </footer>
 
       <style jsx>{`
-        main {
+        .container {
           max-width: 1640px;
-        }
-      `}</style>
-      <style jsx global>{`
-        html, body {
+          font-family: 'Poppins', sans-serif;
+          display: flex;
+          flex-direction: column;
           min-height: 100%;
         }
         main {
-          max-width: 1640px;
-          font-family: 'Poppins', sans-serif;
+          flex: 1;
+        }
+
+        html, body, #__next {
+          height: 100%;
+          margin: 0;
+        }
+
+        a {
+          color: #04c399;
+          text-decoration: none;
         }
       `}</style>
-    </main>
+    </div>
   );
 };
 
