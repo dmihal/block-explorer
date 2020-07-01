@@ -11,11 +11,12 @@ const SubHeader: React.FC<SubHeaderProps> = ({ type, inline, children }) => {
       <div className="primary">{type}{!inline && ':'}</div>
       <div>{children}</div>
 
-      <style>{`
+      <style jsx>{`
         h2 {
           border-bottom: solid 1px #d4dee5;
           font-weight: 500;
           font-size: 25px;
+          margin-bottom: 45px;
         }
         h2.inline {
           display: flex;

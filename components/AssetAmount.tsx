@@ -12,6 +12,7 @@ interface AssetAmountProps {
   amount: string;
   asset: string;
   assets: Asset[];
+  noChip?: boolean;
 }
 
 const formatBalance = (amount: string, address: string, assets: Asset[]) => {
@@ -25,13 +26,15 @@ const formatBalance = (amount: string, address: string, assets: Asset[]) => {
   throw new Error(`Asset ${address} not found`);
 };
 
-const AssetAmount: React.FC<AssetAmountProps> = ({ amount, asset, assets }) => {
+const AssetAmount: React.FC<AssetAmountProps> = ({ amount, asset, assets, noChip }) => {
   const _balance = formatBalance(amount, asset, assets);
 
   return (
     <div>
       <div className="amount">{_balance}</div>
-      <AssetChip address={asset} assets={assets} />
+      {!noChip && (
+        <AssetChip address={asset} assets={assets} />
+      )}
 
       <style jsx>{`
         .amount {

@@ -1,32 +1,41 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
+import AssetAmount from 'components/AssetAmount';
+import AssetChip from 'components/AssetChip';
 import Layout from 'components/Layout';
+import SubHeader from 'components/SubHeader';
 import { getAddress, Address } from 'data/addresses';
-import { getAssetName, formatValue } from 'data/assets';
+import { getAssets, Asset } from 'data/assets';
 
 interface AddressPageProps {
   address: Address | null;
+  assets: Asset[];
 }
 
-const AddressPage: NextPage<AddressPageProps> = ({ address }) => {
+const AddressPage: NextPage<AddressPageProps> = ({ address, assets }) => {
   if (!address) {
     Router.push('/accounts');
     return null;
   }
 
   return (
-    <Layout title={address.address}>
-      <h1>Address {address.address}</h1>
+    <Layout title="Address">
+      <div className="balances">
+        <h3>Balances</h3>
+        <ul>
+          {Object.entries(address.balances).map(([asset, balance]: [string, string]) => (
+            <div key={asset} className="balance">
+              <div><AssetChip address={asset} assets={assets} /></div>
+              <div><AssetAmount amount={balance} asset={asset} assets={assets} noChip /></div>
+            </div>
+          ))}
+        </ul>
+      </div>
 
-      <h2>Balances</h2>
-      <ul>
-        {Object.entries(address.balances).map(([asset, balance]: [string, string]) => (
-          <li key={asset}>{getAssetName(asset)}: {formatValue(balance, asset)}</li>
-        ))}
-      </ul>
+      <SubHeader type="Address">{address.address}</SubHeader>
 
-      <h2>Transactions</h2>
+      <h3>Transactions</h3>
       <ul>
         {address.transactions.map(tx => (
           <li key={tx}>
@@ -34,6 +43,32 @@ const AddressPage: NextPage<AddressPageProps> = ({ address }) => {
           </li>
         ))}
       </ul>
+
+      <style jsx>{`
+        .balances {
+          width: 671px;
+          height: 243px;
+          border-radius: 10px;
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+          padding: 24px 32px;
+          background: white;
+          float: right;
+        }
+
+        h3 {
+          font-size: 25px;
+          font-weight: 600;
+          color: #26282a;
+        }
+
+        .balance {
+          display: flex;
+          font-size: 25px;
+        }
+        .balance > div {
+          flex: 1 0 0;
+        }
+      `}</style>
     </Layout>
   );
 };
@@ -41,6 +76,8 @@ const AddressPage: NextPage<AddressPageProps> = ({ address }) => {
 export default AddressPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const address = getAddress(params.address);
-  return { props: { address } };
+  const address = getAddress(params!.address as string);
+  const assets = getAssets();
+
+  return { props: { address, assets } };
 };
