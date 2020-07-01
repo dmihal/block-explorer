@@ -1,18 +1,19 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Layout from 'components/Layout';
+import SubHeader from 'components/SubHeader';
 import { getBlocks, Block } from 'data/blocks';
 
 interface BlocksPageProps {
   blocks: Block[];
 }
 
-const BlocksPage: NextPage<IndexPageProps> = ({ blocks }) => {
+const BlocksPage: NextPage<BlocksPageProps> = ({ blocks }) => {
   return (
     <Layout title="Blocks">
-      <h1>Blocks</h1>
+      <SubHeader type="Blocks" />
       <ul>
-        {blocks.map((block) => (
+        {blocks.map((block: Block) => (
           <li key={block.hash}>
             <Link href="/block/[blockNum]" as={`/block/${block.height}`}>
               <a>Block {block.height}</a>
@@ -26,7 +27,7 @@ const BlocksPage: NextPage<IndexPageProps> = ({ blocks }) => {
 
 export default BlocksPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const blocks = getBlocks();
   return { props: { blocks } };
 };
