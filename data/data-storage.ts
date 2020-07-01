@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs';
+import { tmpdir } from 'os';
 
-const DATA_FILE = `${process.env.PWD}/data.json`;
+const DATA_DIR = process.env.NODE_ENV === 'production' ? tmpdir() : process.env.PWD;
+const DATA_FILE = `${DATA_DIR}/data.json`;
 
 function readData() {
   try {
