@@ -1,16 +1,19 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Router from 'next/router';
+import AssetAmount from 'components/AssetAmount';
 import { Attributes, Attribute } from 'components/Attributes';
 import FuelLink from 'components/FuelLink';
 import Layout from 'components/Layout';
 import SubHeader from 'components/SubHeader';
+import { getAssets, Asset } from 'data/assets';
 import { getRoot, Root } from 'data/roots';
 
 interface RootPageProps {
   _root: Root | null;
+  assets: Asset[];
 }
 
-const RootPage: NextPage<RootPageProps> = ({ _root }) => {
+const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
   if (!_root) {
     Router.push('/roots');
     return null;
@@ -31,8 +34,9 @@ const RootPage: NextPage<RootPageProps> = ({ _root }) => {
         <Attribute attribute="Merkle tree root">{_root.merkleTreeRoot}</Attribute>
         <Attribute attribute="Commitment hash">{_root.commitmentHash}</Attribute>
         <Attribute attribute="Size">{_root.size}</Attribute>
-        <Attribute attribute="Fee token">{_root.feeToken}</Attribute>
-        <Attribute attribute="Fee">{_root.fee}</Attribute>
+        <Attribute attribute="Fee">
+          <AssetAmount amount={_root.fee} asset={_root.feeToken} assets={assets} />
+        </Attribute>
         <Attribute attribute="Transactions">
           {_root.transactions.map((tx: string) => (
             <div key={tx} className="tx">
@@ -49,12 +53,13 @@ export default RootPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const _root = getRoot(params!.rootHash as string);
+  const assets = getAssets();
 
   if (!_root) {
     res.writeHead(301, { Location: '/roots' });
     res.end();
-    return { props: { _root: null } };
+    return { props: { _root: null, assets } };
   }
 
-  return { props: { _root } };
+  return { props: { _root, assets } };
 };

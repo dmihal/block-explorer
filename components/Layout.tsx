@@ -34,6 +34,7 @@ const Layout: React.FC<Props> = ({ children, breadCrumbs = [], title = 'This is 
           display: flex;
           flex-direction: column;
           min-height: 100%;
+          color: #021d17;
         }
         main {
           flex: 1;

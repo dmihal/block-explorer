@@ -1,21 +1,22 @@
 import { NextPage, GetServerSideProps } from 'next';
-import Link from 'next/link';
 import Router from 'next/router';
+import AssetAmount from 'components/AssetAmount';
 import { Attributes, Attribute } from 'components/Attributes';
 import Layout from 'components/Layout';
 import SubHeader from 'components/SubHeader';
+import { getAssets, Asset } from 'data/assets';
 import { getTransaction, Transaction } from 'data/transactions';
 
 interface TransactionPageProps {
   block: Transaction | null;
+  assets: Asset[];
 }
 
-const TransactionPage: NextPage<TransactionPageProps> = ({ transaction }) => {
+const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }) => {
   if (!transaction) {
     Router.push('/transactions');
     return null;
   }
-
 
   const breadCrumbs = [
     { name: 'Network', page: '/' },
@@ -23,7 +24,6 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction }) => {
     { type: 'root' as 'root', value: transaction.root },
     'Transaction',
   ];
-
 
   return (
     <Layout title="Transaction" breadCrumbs={breadCrumbs}>
@@ -33,7 +33,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction }) => {
         <Attributes>
           <Attribute attribute={`Input (${transaction.inputs.length})`}>
             {transaction.inputs.map((input: any, i: number) => (
-              <div key={i}>{input.asset} {input.value}</div>
+              <AssetAmount key={i} amount={input.value} asset={input.asset} assets={assets} />
             ))}
           </Attribute>
         </Attributes>
@@ -42,7 +42,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction }) => {
           <Attribute attribute={`Output (${transaction.outputs.length})`}>
             {transaction.outputs.map((output: any, i: number) => (
               <div key={i}>
-                <div>{output.asset} {output.value}</div>
+                <AssetAmount amount={output.value} asset={output.asset} assets={assets} />
                 <div>To: {output.account}</div>
               </div>
             ))}
@@ -51,8 +51,9 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction }) => {
       </div>
 
       <Attributes>
-        <Attribute attribute="Fee token">{transaction.feeToken}</Attribute>
-        <Attribute attribute="Fee">{transaction.fee}</Attribute>
+        <Attribute attribute="Fee">
+          <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} />
+        </Attribute>
         <Attribute attribute="Data size">{transaction.size}</Attribute>
         <Attribute attribute={`Witness (${transaction.inputs.length})`}>
           {transaction.inputs.map((input: any) => (<div key={input.account}>{input.account}</div>))}
@@ -76,12 +77,13 @@ export default TransactionPage;
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const { txHash } = params;
   const transaction = getTransaction(txHash);
+  const assets = getAssets();
 
   if (!transaction) {
     res.writeHead(301, { Location: '/transactions' });
     res.end();
-    return { props: { transaction: null } };
+    return { props: { transaction: null, assets } };
   }
 
-  return { props: { transaction } };
+  return { props: { transaction, assets } };
 };
