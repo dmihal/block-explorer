@@ -96,6 +96,8 @@ function generateGenesis() {
         account: allAddresses[0],
       },
     ],
+    feeToken: '0x0000000000000000000000000000000000000000',
+    fee: '0',
     size: 2000,
     signature: '0x7cde2195bbf95f2f1e0b048b4d361e0b6ba3f70bcbbf6ca63cb4ea9a284e133e',
   };
@@ -142,6 +144,8 @@ function generateNewBlock() {
           ],
           size: 2000,
           signature: randomHex(64),
+          feeToken: '0x0000000000000000000000000000000000000000',
+          fee: '0',
         };
 
         txs.push(tx);

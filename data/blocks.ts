@@ -8,6 +8,8 @@ export interface Block {
   producer: string;
   ethereumBlockNumber: number;
   size: number;
+  feeToken: string;
+  fee: string;
   timestamp: number;
   roots: string[];
 }

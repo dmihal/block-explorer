@@ -57,6 +57,16 @@ const BreadCrumbs: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) =
         .breadCrumbs li {
           list-style: none;
           padding: 0;
+
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .breadCrumbs li :global(a) {
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .breadCrumbs li + li:before {
