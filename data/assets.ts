@@ -1,9 +1,9 @@
 import { fromWei } from 'ethjs-unit';
 
-interface Asset {
+export interface Asset {
   address: string;
-  name: 'Dai',
-  symbol: 'DAI',
+  name: string;
+  symbol: string;
   decimals: number;
 }
 

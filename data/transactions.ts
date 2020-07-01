@@ -12,6 +12,8 @@ export interface Transaction {
   block: number | null;
   inputs: UTXO[];
   outputs: UTXO[];
+  feeToken: string;
+  fee: string;
   size: number;
   signature: string;
 }

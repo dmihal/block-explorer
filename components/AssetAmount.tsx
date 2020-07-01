@@ -10,7 +10,7 @@ const units: { [decimals: number]: string } = {
 
 interface AssetAmountProps {
   amount: string;
-  address: string;
+  asset: string;
   assets: Asset[];
 }
 

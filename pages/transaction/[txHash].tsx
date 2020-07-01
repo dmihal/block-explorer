@@ -8,7 +8,7 @@ import { getAssets, Asset } from 'data/assets';
 import { getTransaction, Transaction } from 'data/transactions';
 
 interface TransactionPageProps {
-  block: Transaction | null;
+  transaction: Transaction | null;
   assets: Asset[];
 }
 
@@ -75,8 +75,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
 export default TransactionPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
-  const { txHash } = params;
-  const transaction = getTransaction(txHash);
+  const transaction = getTransaction(params!.txHash as string);
   const assets = getAssets();
 
   if (!transaction) {

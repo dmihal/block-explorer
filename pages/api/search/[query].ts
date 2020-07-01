@@ -2,12 +2,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getBlock } from 'data/blocks';
 import { getRoot } from 'data/roots';
 import { getTransaction } from 'data/transactions';
-import { getAddresses } from 'data/addresses';
+// import { getAddresses } from 'data/addresses';
 import { isUInt } from 'utils/str';
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { query } = req.query;
+    const query = req.query.query as string;
     let page = null;
     let path = null;
 
