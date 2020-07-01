@@ -1,10 +1,12 @@
 import { NextPage, GetServerSideProps } from 'next';
-import Link from 'next/link';
 import Router from 'next/router';
+import { Attributes, Attribute } from 'components/Attributes';
+import FuelLink from 'components/FuelLink';
 import Layout from 'components/Layout';
+import SubHeader from 'components/SubHeader';
 import { getRoot, Root } from 'data/roots';
 
-interface IndexPageProps {
+interface RootPageProps {
   _root: Root | null;
 }
 
@@ -14,34 +16,45 @@ const RootPage: NextPage<RootPageProps> = ({ _root }) => {
     return null;
   }
 
+  const breadCrumbs = [
+    { name: 'Network', page: '/' },
+    { type: 'block' as 'block', value: _root.block },
+    'Root',
+  ];
+
   return (
-    <Layout title="Roots">
-      <h1>Root {_root.number}</h1>
+    <Layout title="Roots" breadCrumbs={breadCrumbs}>
+      <SubHeader type="Root">{_root.hash}</SubHeader>
 
-      {_root.block !== null && (
-        <div>
-          Block:
-          <Link href="/block/[blockNum]" as={`/block/${_root.block}`}><a>{_root.block}</a></Link>
-        </div>
-      )}
-
-      <pre>{JSON.stringify(_root, null, '  ')}</pre>
-      <h2>Transactions</h2>
-      <ul>
-        {_root.transactions.map(tx => (
-          <li key={tx}>
-            <Link href="/transaction/[txHash]" as={`/transaction/${tx}`}><a>{tx}</a></Link>
-          </li>
-        ))}
-      </ul>
+      <Attributes>
+        <Attribute attribute="Producer">{_root.producer}</Attribute>
+        <Attribute attribute="Merkle tree root">{_root.merkleTreeRoot}</Attribute>
+        <Attribute attribute="Commitment hash">{_root.commitmentHash}</Attribute>
+        <Attribute attribute="Size">{_root.size}</Attribute>
+        <Attribute attribute="Fee token">{_root.feeToken}</Attribute>
+        <Attribute attribute="Fee">{_root.fee}</Attribute>
+        <Attribute attribute="Transactions">
+          {_root.transactions.map((tx: string) => (
+            <div key={tx} className="tx">
+              <FuelLink type="transaction">{tx}</FuelLink>
+            </div>
+          ))}
+        </Attribute>
+      </Attributes>
     </Layout>
   );
 };
 
 export default RootPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { rootHash } = params;
-  const _root = getRoot(rootHash);
+export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+  const _root = getRoot(params!.rootHash as string);
+
+  if (!_root) {
+    res.writeHead(301, { Location: '/roots' });
+    res.end();
+    return { props: { _root: null } };
+  }
+
   return { props: { _root } };
 };
