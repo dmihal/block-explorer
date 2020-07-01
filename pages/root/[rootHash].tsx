@@ -30,7 +30,9 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
       <SubHeader type="Root">{_root.hash}</SubHeader>
 
       <Attributes>
-        <Attribute attribute="Producer">{_root.producer}</Attribute>
+        <Attribute attribute="Producer">
+          <FuelLink type="address">{_root.producer}</FuelLink>
+        </Attribute>
         <Attribute attribute="Merkle tree root">{_root.merkleTreeRoot}</Attribute>
         <Attribute attribute="Commitment hash">{_root.commitmentHash}</Attribute>
         <Attribute attribute="Size">{_root.size}</Attribute>

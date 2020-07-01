@@ -26,7 +26,9 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
       <SubHeader type="Block" inline>#{block.height}</SubHeader>
 
       <Attributes>
-        <Attribute attribute="Block producer">{block.producer}</Attribute>
+        <Attribute attribute="Producer">
+          <FuelLink type="address">{block.producer}</FuelLink>
+        </Attribute>
 
         {block.parentHash && (
           <Attribute attribute="Previous block hash">

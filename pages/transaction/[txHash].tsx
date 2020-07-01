@@ -3,6 +3,7 @@ import Router from 'next/router';
 import AssetAmount from 'components/AssetAmount';
 import { Attributes, Attribute } from 'components/Attributes';
 import Layout from 'components/Layout';
+import FuelLink from 'components/FuelLink';
 import SubHeader from 'components/SubHeader';
 import { getAssets, Asset } from 'data/assets';
 import { getTransaction, Transaction } from 'data/transactions';
@@ -43,7 +44,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
             {transaction.outputs.map((output: any, i: number) => (
               <div key={i}>
                 <AssetAmount amount={output.value} asset={output.asset} assets={assets} />
-                <div>To: {output.account}</div>
+                <div>To: <FuelLink type="address">{output.account}</FuelLink></div>
               </div>
             ))}
           </Attribute>
@@ -56,7 +57,9 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         </Attribute>
         <Attribute attribute="Data size">{transaction.size}</Attribute>
         <Attribute attribute={`Witness (${transaction.inputs.length})`}>
-          {transaction.inputs.map((input: any) => (<div key={input.account}>{input.account}</div>))}
+          {transaction.inputs.map((input: any) => (
+            <div key={input.account}><FuelLink type="address">{input.account}</FuelLink></div>
+          ))}
         </Attribute>
       </Attributes>
 

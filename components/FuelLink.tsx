@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 
-export type FuelLinkTypes = 'block' | 'root' | 'transaction';
+export type FuelLinkTypes = 'block' | 'root' | 'transaction' | 'address';
 
 interface FuelLinkProps {
   type: FuelLinkTypes;
@@ -29,6 +29,13 @@ const FuelLink: React.FC<FuelLinkProps> = ({ type, label, title, children }) => 
       return (
         <Link href="/transaction/[txHash]" as={`/transaction/${children}`}>
           <a>{title && 'Transaction '}{label || children}</a>
+        </Link>
+      );
+
+    case 'address':
+      return (
+        <Link href="/address/[address]" as={`/address/${children}`}>
+          <a>{title && 'Address '}{label || children}</a>
         </Link>
       );
   }
