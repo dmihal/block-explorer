@@ -1,10 +1,12 @@
 import { NextPage, GetServerSideProps } from 'next';
-import Link from 'next/link';
 import Router from 'next/router';
+import { Attributes, Attribute } from 'components/Attributes';
 import Layout from 'components/Layout';
+import FuelLink from 'components/FuelLink';
+import SubHeader from 'components/SubHeader';
 import { getBlock, Block } from 'data/blocks';
 
-interface IndexPageProps {
+interface BlockPageProps {
   block: Block | null;
 }
 
@@ -16,32 +18,55 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
 
   return (
     <Layout title="Blocks">
-      <h1>Block {block.number}</h1>
+      <SubHeader type="Block" inline>#{block.height}</SubHeader>
 
-      {block.block !== null && (
-        <div>
-          Parent:
-          <Link href="/block/[blockNum]" as={`/block/${block.parentHash}`}><a>{block.parentHash}</a></Link>
-        </div>
-      )}
+      <Attributes>
+        <Attribute attribute="Block producer">{block.producer}</Attribute>
 
-      <pre>{JSON.stringify(block, null, '  ')}</pre>
-      <h2>Roots</h2>
-      <ul>
-        {block.roots.map((_root: string) => (
-          <li key={_root}>
-            <Link href="/root/[rootHash]" as={`/root/${_root}`}><a>{_root}</a></Link>
-          </li>
-        ))}
-      </ul>
+        {block.parentHash && (
+          <Attribute attribute="Previous block hash">
+            <FuelLink type="block" label={block.parentHash}>{block.height - 1}</FuelLink>
+          </Attribute>
+        )}
+
+        <Attribute attribute="Block height">{block.height}</Attribute>
+        <Attribute attribute="Ethereum block number">{block.ethereumBlockNumber}</Attribute>
+        <Attribute attribute="Number of tokens">TODO</Attribute>
+        <Attribute attribute="Number of addresses">TODO</Attribute>
+        <Attribute attribute={`Roots (${block.roots.length})`}>
+          {block.roots.map((_root: string) => (
+            <div key={_root} className="root">
+              <FuelLink type="root">{_root}</FuelLink>
+            </div>
+          ))}
+        </Attribute>
+      </Attributes>
+
+      <style jsx>{`
+        .root {
+          overflow: hidden;
+          margin-bottom: 50px;
+        }
+        .root :global(a) {
+          overflow: hidden;
+          display: block;
+          text-overflow: ellipsis;
+        }
+      `}</style>
     </Layout>
   );
 };
 
 export default BlockPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { blockNum } = params;
-  const block = getBlock(parseInt(blockNum));
+export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+  const block = getBlock(parseInt(params!.blockNum as string));
+
+  if (!block) {
+    res.writeHead(302, { Location: '/blocks' });
+    res.end();
+    return { props: { block: null } };
+  }
+
   return { props: { block } };
 };

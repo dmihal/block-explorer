@@ -33,7 +33,8 @@ const Layout: React.FC<Props> = ({ children, title = 'This is the default title'
         main {
           flex: 1;
         }
-
+      `}</style>
+      <style jsx global>{`
         html, body, #__next {
           height: 100%;
           margin: 0;
