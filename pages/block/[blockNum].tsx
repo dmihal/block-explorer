@@ -16,8 +16,13 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
     return null;
   }
 
+  const breadCrumbs = [
+    { name: 'Network', page: '/' },
+    'Block',
+  ];
+
   return (
-    <Layout title="Blocks">
+    <Layout title="Blocks" breadCrumbs={breadCrumbs}>
       <SubHeader type="Block" inline>#{block.height}</SubHeader>
 
       <Attributes>

@@ -2,13 +2,15 @@ import React, { ReactNode } from 'react'
 import Head from 'next/head';
 import Header from './Header';
 import Location from './Location';
+import { BreadCrumb } from './BreadCrumbs';
 
 type Props = {
-  children?: ReactNode
-  title?: string
+  children?: ReactNode;
+  title?: string;
+  breadCrumbs?: BreadCrumb[];
 }
 
-const Layout: React.FC<Props> = ({ children, title = 'This is the default title' }) => {
+const Layout: React.FC<Props> = ({ children, breadCrumbs = [], title = 'This is the default title' }) => {
   return (
     <div className="container">
       <Head>
@@ -19,7 +21,7 @@ const Layout: React.FC<Props> = ({ children, title = 'This is the default title'
       </Head>
 
       <Header />
-      <Location />
+      <Location breadCrumbs={breadCrumbs} />
 
       <main>{children}</main>
       <footer>

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import BreadCrumbs, { BreadCrumb } from './BreadCrumbs';
 
-const Location: React.FC = () => {
+const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
   const [networkOpen, setNetworkOpen] = useState(false);
 
   return (
     <div className="location">
-      <div />
+      <BreadCrumbs breadCrumbs={breadCrumbs} />
 
       <div className={`network-container ${networkOpen ? 'open' : ''}`}>
         <div className="network-selector" onClick={() => setNetworkOpen(!networkOpen)}>Mainnet</div>
