@@ -1,3 +1,5 @@
+import { getVal, setVal } from './data-storage';
+
 export interface Root {
   hash: string;
   producer: string;
@@ -11,10 +13,9 @@ export interface Root {
   transactions: string[];
 }
 
-export const roots: Root[] = [];
-
 export function getRoot(hash: string) {
-  console.log(roots);
+  const roots = getVal('roots', []) as Root[];
+
   for (const _root of roots) {
     if (hash === _root.hash) {
       return _root;
@@ -24,5 +25,12 @@ export function getRoot(hash: string) {
 }
 
 export function getRoots() {
+  const roots = getVal('roots', []) as Root[];
   return roots;
+}
+
+export function addRoot(_root: Root) {
+  const roots = getVal('roots', []) as Root[];
+
+  setVal('roots', [...roots, _root]);
 }

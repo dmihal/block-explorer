@@ -1,4 +1,5 @@
 import BN from 'bn.js';
+import { getVal, setVal } from './data-storage';
 import { Transaction } from './transactions';
 
 const bn = (val: string) => new BN(val);
@@ -8,10 +9,11 @@ export interface Address {
   balances: { [assetAddress: string]: string };
   transactions: string[];
 }
-
-const addresses: { [address: string]: Address } = {};
+type AddressMap = { [address: string]: Address };
 
 export function updateFromTransactions(transactions: Transaction[]) {
+  const addresses = getVal('addresses', {}) as AddressMap;
+
   for (const transaction of transactions) {
     for (const input of transaction.inputs) {
       const address = addresses[input.account];
@@ -37,12 +39,16 @@ export function updateFromTransactions(transactions: Transaction[]) {
       }
     }
   }
+
+  setVal('addresses', addresses);
 }
 
 export function getAddresses() {
+  const addresses = getVal('addresses', {}) as AddressMap;
   return Object.values(addresses);
 }
 
 export function getAddress(address: string) {
+  const addresses = getVal('addresses', {}) as AddressMap;
   return addresses[address] || null;
 }

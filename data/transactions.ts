@@ -1,3 +1,5 @@
+import { getVal, setVal } from './data-storage';
+
 export interface UTXO {
   value: string;
   asset: string;
@@ -14,17 +16,24 @@ export interface Transaction {
   signature: string;
 }
 
-export const transactions: Transaction[] = [];
-
 export function getTransactions() {
+  const transactions = getVal('transactions', []) as Transaction[];
   return transactions;
 }
 
 export function getTransaction(hash: string) {
+  const transactions = getVal('transactions', []) as Transaction[];
+
   for (const tx of transactions) {
     if (tx.hash === hash) {
       return tx;
     }
   }
   return null;
+}
+
+export function addTransaction(tx: Transaction) {
+  const transactions = getVal('transactions', []) as Transaction[];
+
+  setVal('transactions', [...transactions, tx]);
 }

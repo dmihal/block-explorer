@@ -1,3 +1,4 @@
+import { getVal, setVal } from './data-storage';
 import './data-mocks';
 
 export interface Block {
@@ -14,18 +15,29 @@ export interface Block {
 export const blocks: Block[] = [];
 
 export function getBlock(blockNum: number) {
+  const blocks = getVal('blocks', []) as Block[];
+
   for (const block of blocks) {
     if (blockNum === block.height) {
       return block;
     }
   }
+  console.log('cannot find block', blockNum);
   return null;
 }
 
-interface BlockQueryOptions {
+export function getBlocks() {
+  const blocks = getVal('blocks', []) as Block[];
 
+  return blocks;
 }
 
-export function getBlocks({}: BlockQueryOptions = {}) {
-  return blocks;
+export function addBlock(block: Block) {
+  const blocks = getVal('blocks', []) as Block[];
+
+  if (blocks.filter((b: Block) => b.height === block.height).length > 0) {
+    throw new Error(`Block already exists with height ${block.height}`);
+  }
+
+  setVal('blocks', [...blocks, block]);
 }

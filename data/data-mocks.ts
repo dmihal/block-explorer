@@ -1,15 +1,16 @@
 import BN from 'bn.js';
 import { randomAddress, randomHex } from 'utils/hex';
-import { getAddresses, updateFromTransactions } from './addresses';
-import { assets } from './assets';
-import { blocks } from './blocks';
-import { roots, Root } from './roots';
-import { transactions, Transaction } from './transactions';
+import { getAddresses, updateFromTransactions, Address } from './addresses';
+// import { assets } from './assets';
+import { getBlocks, addBlock } from './blocks';
+import { addRoot, Root } from './roots';
+import { getTransactions, addTransaction, Transaction } from './transactions';
 
 const bn = (val: string) => new BN(val);
 const randInt = (max: number) => Math.floor(Math.random() * max);
 
 const allAddresses = [
+  ...getAddresses().map((addr: Address) => addr.address),
   randomAddress(),
   randomAddress(),
   randomAddress(),
@@ -27,9 +28,7 @@ const allAddresses = [
 
 const producer = randomAddress();
 
-let nextBlockNum = 0;
-function mine(txs: Transaction[], parentHash: string | null = null) {
-  console.log(txs.slice(0, Math.floor(txs.length / 2)).map(tx => tx.hash));
+function mine(txs: Transaction[]) {
   const root1: Root = {
     hash: randomHex(64),
     producer,
@@ -58,12 +57,16 @@ function mine(txs: Transaction[], parentHash: string | null = null) {
     });
   }
 
+  const blocks = getBlocks();
+  const height = blocks.length === 0 ? 0 : blocks[blocks.length - 1].height + 1;
+  const parentHash = blocks.length === 0 ? null : blocks[blocks.length - 1].hash;
+
   const block = {
-    height: nextBlockNum++,
+    height,
     hash: randomHex(64),
     parentHash,
     producer,
-    ethereumBlockNumber: nextBlockNum + 1000123,
+    ethereumBlockNumber: height + 1000123,
     size: 200000,
     timestamp: Date.now() / 1000,
     roots: roots.map((rt: Root) => rt.hash),
@@ -97,14 +100,19 @@ function generateGenesis() {
     signature: '0x7cde2195bbf95f2f1e0b048b4d361e0b6ba3f70bcbbf6ca63cb4ea9a284e133e',
   };
 
-  const { block, roots: _roots } = mine([tx]);
-  _roots.forEach((_root: Root) => roots.push(_root));
-  blocks.push(block);
-  transactions.push(tx);
+  const { block, roots } = mine([tx]);
+  roots.forEach((_root: Root) => addRoot(_root));
+  addBlock(block);
+  addTransaction(tx);
   updateFromTransactions([tx]);
 }
 
 function generateNewBlock() {
+  const blocks = getBlocks();
+  if (blocks.length > 0 && (Date.now() / 1000 - blocks[blocks.length - 1].timestamp) < 5) {
+    return;
+  }
+
   const addresses = getAddresses();
   const txs: Transaction[] = [];
   for (const address of addresses) {
@@ -143,14 +151,14 @@ function generateNewBlock() {
 
   console.log(`Generating ${txs.length} transactions`, txs);
 
-  const { block, roots: _roots } = mine(txs, blocks[blocks.length - 1].hash);
-  _roots.forEach((_root: Root) => roots.push(_root));
-  blocks.push(block);
-  txs.map((tx: Transaction) => transactions.push(tx));
+  const { block, roots } = mine(txs, blocks[blocks.length - 1].hash);
+  roots.forEach((_root: Root) => addRoot(_root));
+  addBlock(block);
+  txs.map((tx: Transaction) => addTransaction(tx));
   updateFromTransactions(txs);
 }
 
-if (transactions.length === 0) {
+if (getTransactions().length === 0) {
   setTimeout(generateGenesis, 1);
-  setInterval(generateNewBlock, 5000);
 }
+setInterval(generateNewBlock, 5000);
