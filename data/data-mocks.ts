@@ -151,7 +151,7 @@ function generateNewBlock() {
 
   console.log(`Generating ${txs.length} transactions`, txs);
 
-  const { block, roots } = mine(txs, blocks[blocks.length - 1].hash);
+  const { block, roots } = mine(txs);
   roots.forEach((_root: Root) => addRoot(_root));
   addBlock(block);
   txs.map((tx: Transaction) => addTransaction(tx));
@@ -161,4 +161,5 @@ function generateNewBlock() {
 if (getTransactions().length === 0) {
   setTimeout(generateGenesis, 1);
 }
-setInterval(generateNewBlock, 5000);
+const interval = setInterval(generateNewBlock, 5000);
+setTimeout(() => clearInterval(interval), 2 * 60 * 1000);
