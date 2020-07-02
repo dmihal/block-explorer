@@ -91,8 +91,13 @@ function generateGenesis() {
     inputs: [],
     outputs: [
       {
+        asset: '0x0000000000000000000000000000000000000000',
+        value: '10000000000000000000',
+        account: allAddresses[0],
+      },
+      {
         asset: '0x6b175474e89094c44da98b954eedeac495271d0f',
-        value: '1000000000000000000',
+        value: '10000000000000000000',
         account: allAddresses[0],
       },
     ],
@@ -120,7 +125,7 @@ function generateNewBlock() {
   for (const address of addresses) {
     const balances = Object.entries(address.balances);
     for (const [asset, balance] of balances) {
-      if (Math.random() < (2 / addresses.length / balances.length)) {
+      if (balance !== '0' && Math.random() < (2 / addresses.length / balances.length)) {
         const valuePercent = bn(`${Math.floor(Math.min(Math.random() + 0.5, 1) * 10000)}`);
         const value = bn(balance).mul(valuePercent).div(bn('10000')).toString();
 

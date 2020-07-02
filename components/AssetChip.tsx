@@ -23,12 +23,13 @@ const AssetChip: React.FC<AssetChipProps> = ({ address, assets }) => {
       {asset.symbol}
       <style jsx>{`
         .chip {
-          width: 85px;
-          height: 39px;
+          width: 57px;
+          height: 26px;
+          line-height: 26px;
           border-radius: 20px;
           background-color: #f5f5f5;
           color: #26282a;
-          font-size: 24px;
+          font-size: 15px;
           text-align: center;
           display: inline-block;
         }

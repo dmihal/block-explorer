@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bn.js": "^5.1.2",
+    "date-fns": "^2.14.0",
     "ethjs-unit": "^0.1.6",
     "keccak": "^3.0.0",
     "next": "latest",

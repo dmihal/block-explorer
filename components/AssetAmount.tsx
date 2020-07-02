@@ -27,11 +27,14 @@ const formatBalance = (amount: string, address: string, assets: Asset[]) => {
 };
 
 const AssetAmount: React.FC<AssetAmountProps> = ({ amount, asset, assets, noChip }) => {
-  const _balance = formatBalance(amount, asset, assets);
+  const fullBalance = formatBalance(amount, asset, assets);
+  const shortBalance = fullBalance.indexOf('.') === -1
+    ? fullBalance
+    : fullBalance.substring(0, fullBalance.indexOf('.') + 5);
 
   return (
     <div>
-      <div className="amount">{_balance}</div>
+      <div className="amount" title={fullBalance}>{shortBalance}</div>
       {!noChip && (
         <AssetChip address={asset} assets={assets} />
       )}
