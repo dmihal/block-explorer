@@ -114,6 +114,19 @@ const SearchBar: React.FC = () => {
           margin-right: 20px;
         }
 
+        @media (max-width: 600px) {
+          .input {
+            font-size: 12px;
+            height: 34px;
+            border: solid 0.5px #d4dee5;
+          }
+          .search {
+            height: 34px;
+            width: 34px;
+            background-size: 15px;
+          }
+        }
+
         @keyframes lds-dual-ring {
           0% {
             transform: rotate(0deg);

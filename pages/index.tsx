@@ -4,6 +4,11 @@ import Layout from '../components/Layout';
 import SearchBar from 'components/SearchBar';
 import { getBlocks } from 'data/blocks';
 import { getTransactions } from 'data/transactions';
+import graphImg from 'assets/graph.png';
+import cardImg from 'assets/credit-card.png';
+import speedImg from 'assets/speed.png';
+import swapImg from 'assets/swap.png';
+import gasImg from 'assets/gas.png';
 
 interface IndexPageProps {
   blockNum: number;
@@ -16,38 +21,40 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
       <div className="col">
         <SearchBar />
 
-        <dl>
-          <div>
-            <dt>Block</dt>
-            <dd>
-              <Link href="/block/[blockNum]" as={`/block/${blockNum}`}>
-                <a>#{blockNum}</a>
-              </Link>
-            </dd>
-          </div>
+        <div className="defs">
+          <dl>
+            <div style={{ backgroundImage: `url('${graphImg}')` }}>
+              <dt>Block</dt>
+              <dd>
+                <Link href="/block/[blockNum]" as={`/block/${blockNum}`}>
+                  <a>#{blockNum}</a>
+                </Link>
+              </dd>
+            </div>
 
-          <div>
-            <dt>Transactions</dt>
-            <dd>{numTx}</dd>
-          </div>
+            <div style={{ backgroundImage: `url('${cardImg}')` }}>
+              <dt>Transactions</dt>
+              <dd>{numTx}</dd>
+            </div>
 
-          <div>
-            <dt>Trades</dt>
-            <dd>0</dd>
-          </div>
-        </dl>
+            <div style={{ backgroundImage: `url('${swapImg}')` }}>
+              <dt>Trades</dt>
+              <dd>0</dd>
+            </div>
+          </dl>
 
-        <dl>
-          <div>
-            <dt>Average Speed</dt>
-            <dd>0</dd>
-          </div>
+          <dl>
+            <div style={{ backgroundImage: `url('${speedImg}')` }}>
+              <dt>Average Speed</dt>
+              <dd>0</dd>
+            </div>
 
-          <div>
-            <dt>Average Cost per Tx</dt>
-            <dd>0</dd>
-          </div>
-        </dl>
+            <div style={{ backgroundImage: `url('${gasImg}')` }}>
+              <dt>Average Cost per Tx</dt>
+              <dd>0</dd>
+            </div>
+          </dl>
+        </div>
       </div>
 
       <style jsx>{`
@@ -67,6 +74,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
 
         dl div {
           flex: 1 1 auto;
+          background-size: 0;
         }
 
         dl div + div {
@@ -81,6 +89,37 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
 
         dd {
           margin: 0;
+        }
+
+        @media (max-width: 600px) {
+          .defs {
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            padding: 0 10px;
+          }
+
+          dl {
+            margin: 0;
+            flex-direction: column;
+          }
+
+          dl + dl {
+            border-top: solid 1px #d5dee5;
+          }
+
+          dl div {
+            background-size: 34px;
+            background-repeat: no-repeat;
+            background-position: 20px center;
+            padding: 20px 0 20px 74px;
+            text-align: left;
+            font-size: 16px;
+            line-height: 1;
+          }
+
+          dl div + div {
+            border: 0;
+            border-top: solid 1px #d5dee5;
+          }
         }
       `}</style>
     </Layout>
