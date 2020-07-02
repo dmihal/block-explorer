@@ -58,6 +58,12 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
           display: block;
           text-overflow: ellipsis;
         }
+
+        @media (max-width: 600px) {
+          .tx {
+            margin-bottom: 0;
+          }
+        }
       `}</style>
     </Layout>
   );

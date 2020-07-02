@@ -70,6 +70,12 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         .columns > :global(*) {
           flex: 1 0 0;
         }
+
+        @media (max-width: 600px) {
+          .columns {
+            flex-direction: column;
+          }
+        }
       `}</style>
     </Layout>
   );

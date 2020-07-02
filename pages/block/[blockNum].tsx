@@ -59,6 +59,12 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
           display: block;
           text-overflow: ellipsis;
         }
+
+        @media (max-width: 600px) {
+          .root {
+            margin-bottom: 0;
+          }
+        }
       `}</style>
     </Layout>
   );

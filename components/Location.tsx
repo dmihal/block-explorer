@@ -79,6 +79,12 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
         .network-dropdown li:hover {
           background: #eeeeee;
         }
+
+        @media (max-width: 600px) {
+          .location {
+            display: none;
+          }
+        }
       `}</style>
     </div>
   )
