@@ -24,21 +24,21 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
         .location {
           display: flex;
           justify-content: space-between;
+          font-size: 15px;
         }
 
         .network-container {
           cursor: pointer;
           position: relative;
-          font-size: 20px;
           color: #04c399;
         }
 
         .network-selector {
           border: solid 1px #04c399;
-          height: 41px;
-          border-radius: 21px;
+          height: 30px;
+          border-radius: 15px;
           display: flex;
-          padding: 0 40px;
+          padding: 0 20px;
           align-items: center;
         }
 
@@ -63,16 +63,21 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
           background-color: white;
           border: solid 1px #04c399;
           border-top: 0;
-          border-bottom-right-radius: 20px;
-          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 15px;
+          border-bottom-left-radius: 15px;
           margin: 0;
           padding: 0;
+          overflow: hidden;
         }
 
         .network-dropdown li {
           list-style: none;
           margin: 0;
           padding: 2px 10px;
+        }
+
+        .network-dropdown li:hover {
+          background: #eeeeee;
         }
       `}</style>
     </div>

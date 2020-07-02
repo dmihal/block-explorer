@@ -9,14 +9,14 @@ const SubHeader: React.FC<SubHeaderProps> = ({ type, inline, children }) => {
   return (
     <h2 className={inline ? 'inline' : ''}>
       <div className="primary">{type}{!inline && ':'}</div>
-      <div>{children}</div>
+      <div className="secondary">{children}</div>
 
       <style jsx>{`
         h2 {
           border-bottom: solid 1px #d4dee5;
           font-weight: 500;
-          font-size: 25px;
-          margin-bottom: 45px;
+          font-size: 17px;
+          margin-bottom: 28px;
         }
         h2.inline {
           display: flex;
@@ -24,8 +24,13 @@ const SubHeader: React.FC<SubHeaderProps> = ({ type, inline, children }) => {
         }
 
         .primary {
-          font-size: 35px;
-          margin-right: 20px;
+          font-size: 25px;
+          margin-right: 10px;
+        }
+
+        .secondary {
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       `}</style>
     </h2>

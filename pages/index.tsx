@@ -57,11 +57,12 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
         }
 
         dl {
+          font-size: 20px;
           display: flex;
           text-align: center;
           justify-content: space-around;
-          margin-top: 120px;
-          margin-bottom: 160px;
+          margin-top: 60px;
+          margin-bottom: 80px;
         }
 
         dl div {
@@ -73,7 +74,6 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
         }
 
         dt {
-          font-size: 30px;
           font-weight: 600;
           line-height: 2.33;
           color: #021d17;
@@ -81,7 +81,6 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
 
         dd {
           margin: 0;
-          font-size: 30px;
         }
       `}</style>
     </Layout>

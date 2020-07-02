@@ -10,6 +10,10 @@ const SearchBar: React.FC = () => {
 
   const submit = async (e: any) => {
     e.preventDefault();
+    if (val.length === 0) {
+      return;
+    }
+
     setStatus('loading');
 
     const response = await fetch(`/api/search/${val}`);
@@ -41,15 +45,15 @@ const SearchBar: React.FC = () => {
           position: relative;
         }
         .input {
-          height: 90px;
+          height: 55px;
           border: solid 2px #d4dee5;
           background-color: #ffffff;
           font-family: Poppins;
-          font-size: 25px;
+          font-size: 15px;
           font-weight: 500;
           color: #69737d;
-          border-top-left-radius: 10px;
-          border-bottom-left-radius: 10px;
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
           border-right: none;
           flex: 1;
           box-sizing: border-box;
@@ -58,13 +62,13 @@ const SearchBar: React.FC = () => {
         }
         .search {
           background-image: url('${search}');
-          background-size: 38px;
+          background-size: 20px;
           background-position: center;
-          height: 90px;
-          width: 90px;
+          height: 55px;
+          width: 55px;
           background-color: #04c399;
-          border-top-right-radius: 10px;
-          border-bottom-right-radius: 10px;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
           background-repeat: no-repeat;
           border: none;
           outline: none;
@@ -79,11 +83,11 @@ const SearchBar: React.FC = () => {
         .search.loading:after {
           content: '';
           display: block;
-          width: 38px;
-          height: 38px;
+          width: 20px;
+          height: 20px;
           margin: auto;
           border-radius: 50%;
-          border: 6px solid #fff;
+          border: 3px solid #fff;
           border-color: #fff transparent #fff transparent;
           animation: lds-dual-ring 1.2s linear infinite;
         }
@@ -91,10 +95,9 @@ const SearchBar: React.FC = () => {
           position: absolute;
           left: 0;
           right: 0;
-          top: 90px;
+          top: 55px;
           background: white;
-          font-size: 20px;
-          font-weight: 600;
+          font-weight: 500;
           line-height: 3.5;
           color: #b73853;
           display: flex;
@@ -103,8 +106,8 @@ const SearchBar: React.FC = () => {
         .error.not-found:before {
           content: '';
           background-image: url('${warning}');
-          width: 37px;
-          height: 37px;
+          width: 20px;
+          height: 20px;
           display: block;
           background-size: contain;
           align-items: center;

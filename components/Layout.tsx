@@ -29,12 +29,14 @@ const Layout: React.FC<Props> = ({ children, breadCrumbs = [], title = 'This is 
 
       <style jsx>{`
         .container {
-          max-width: 1640px;
+          max-width: 1080px;
           font-family: 'Poppins', sans-serif;
           display: flex;
           flex-direction: column;
           min-height: 100%;
           color: #021d17;
+          margin: 0 auto;
+          padding: 0px 24px 24px;
         }
         main {
           flex: 1;

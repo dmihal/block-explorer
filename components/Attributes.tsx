@@ -21,8 +21,8 @@ export const Attribute: React.FC<AttributeProps> = ({ attribute, children }) => 
       <style jsx>{`
         .attribute {
           display: flex;
-          margin: 40px 0;
-          font-size: 25px;
+          margin: 24px 0;
+          font-size: 16px;
         }
 
         dt {
@@ -32,7 +32,7 @@ export const Attribute: React.FC<AttributeProps> = ({ attribute, children }) => 
         }
 
         dd {
-          margin-left: 86px;
+          margin-left: 50px;
           flex: 4 0 0;
           overflow: hidden;
           text-overflow: ellipsis;

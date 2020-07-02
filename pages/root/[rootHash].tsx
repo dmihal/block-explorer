@@ -47,6 +47,18 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
           ))}
         </Attribute>
       </Attributes>
+
+      <style jsx>{`
+        .tx {
+          overflow: hidden;
+          margin-bottom: 50px;
+        }
+        .tx :global(a) {
+          overflow: hidden;
+          display: block;
+          text-overflow: ellipsis;
+        }
+      `}</style>
     </Layout>
   );
 };

@@ -50,7 +50,6 @@ const BreadCrumbs: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) =
           display: flex;
           margin: 0;
           padding: 0;
-          font-size: 20px;
           color: #69737d;
         }
 
@@ -58,7 +57,7 @@ const BreadCrumbs: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) =
           list-style: none;
           padding: 0;
 
-          max-width: 200px;
+          max-width: 160px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -72,7 +71,7 @@ const BreadCrumbs: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) =
         .breadCrumbs li + li:before {
           content: '/';
           display: inline-block;
-          margin: 0 20px;
+          margin: 0 10px;
         }
       `}</style>
     </ul>
