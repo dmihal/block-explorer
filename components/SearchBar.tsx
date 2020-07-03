@@ -57,7 +57,8 @@ const SearchBar: React.FC = () => {
           border-right: none;
           flex: 1;
           box-sizing: border-box;
-          padding: 0 45px;
+          padding: 0 30px;
+          margin: 0;
           outline: none;
         }
         .search {
@@ -119,12 +120,24 @@ const SearchBar: React.FC = () => {
             font-size: 12px;
             height: 34px;
             border: solid 0.5px #d4dee5;
+            padding: 0 12px;
           }
           .search {
             height: 34px;
             width: 34px;
             background-size: 15px;
           }
+
+          .error.not-found {
+            top: 34px;
+            font-size: 11px;
+          }
+
+          .error.not-found:before {
+            height: 18px;
+            width: 18px;
+          }
+
         }
 
         @keyframes lds-dual-ring {

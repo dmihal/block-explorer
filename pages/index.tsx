@@ -19,7 +19,9 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
   return (
     <Layout title="Block Explorer">
       <div className="col">
-        <SearchBar />
+        <div className="search-container">
+          <SearchBar />
+        </div>
 
         <div className="defs">
           <dl>
@@ -92,6 +94,11 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
         }
 
         @media (max-width: 600px) {
+          .search-container {
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: solid 1px #f6f6f6;
+          }
           .defs {
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             padding: 0 10px;
