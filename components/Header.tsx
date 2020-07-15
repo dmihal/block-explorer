@@ -14,7 +14,7 @@ const Header = () => {
       <div onClick={() => setOpen(!isOpen)} className="menu-btn"><div /></div>
 
       <nav>
-        <Link href="/">
+        <Link href="/network">
           <a>Network</a>
         </Link>
         <a href="/labs">Labs</a>

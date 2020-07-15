@@ -10,12 +10,12 @@ import speedImg from 'assets/speed.png';
 import swapImg from 'assets/swap.png';
 import gasImg from 'assets/gas.png';
 
-interface IndexPageProps {
+interface NetworkPageProps {
   blockNum: number;
   numTx: number;
 }
 
-const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
+const NetworkPage: NextPage<NetworkPageProps> = ({ blockNum, numTx }) => {
   return (
     <Layout title="Block Explorer">
       <div className="col">
@@ -133,7 +133,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
   );
 };
 
-export default IndexPage;
+export default NetworkPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const blocks = getBlocks();
