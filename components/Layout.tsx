@@ -8,9 +8,15 @@ type Props = {
   children?: ReactNode;
   title?: string;
   breadCrumbs?: BreadCrumb[];
+  simple?: boolean;
 }
 
-const Layout: React.FC<Props> = ({ children, breadCrumbs = [], title = 'This is the default title' }) => {
+const Layout: React.FC<Props> = ({
+  children,
+  breadCrumbs = [],
+  title = 'This is the default title',
+  simple,
+}) => {
   return (
     <div className="container">
       <Head>
@@ -21,7 +27,9 @@ const Layout: React.FC<Props> = ({ children, breadCrumbs = [], title = 'This is 
       </Head>
 
       <Header />
-      <Location breadCrumbs={breadCrumbs} />
+      {!simple && (
+        <Location breadCrumbs={breadCrumbs} />
+      )}
 
       <main>{children}</main>
       <footer>
@@ -37,6 +45,7 @@ const Layout: React.FC<Props> = ({ children, breadCrumbs = [], title = 'This is 
           color: #021d17;
           margin: 0 auto;
           padding: 0px 24px 24px;
+          box-sizing: border-box;
         }
         main {
           flex: 1;
