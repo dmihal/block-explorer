@@ -51,7 +51,7 @@ const SearchBar: React.FC = () => {
           font-family: Poppins;
           font-size: 15px;
           font-weight: 500;
-          color: #69737d;
+          color: #021d17;
           border-top-left-radius: 8px;
           border-bottom-left-radius: 8px;
           border-right: none;
@@ -60,6 +60,9 @@ const SearchBar: React.FC = () => {
           padding: 0 30px;
           margin: 0;
           outline: none;
+        }
+        .input:placeholder {
+          color: #69737d;
         }
         .search {
           background-image: url('${search}');
