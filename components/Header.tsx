@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
-import logo from 'assets/logo.svg';
+import logo from 'assets/bolt.svg';
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className={isOpen ? 'open' : ''}>
       <Link href="/">
-        <a className="logo">Home</a>
+        <a className="logo">Fuel</a>
       </Link>
 
       <div onClick={() => setOpen(!isOpen)} className="menu-btn"><div /></div>
@@ -34,12 +34,17 @@ const Header = () => {
 
         .logo {
           background-image: url('${logo}');
-          width: 120px;
-          height: 34px;
-          color: transparent;
+          height: 54.7px;
           background-size: contain;
-          background-position: center;
+          background-position: 0 center;
           background-repeat: no-repeat;
+          font-size: 40px;
+          font-weight: 600;
+          font-stretch: normal;
+          font-style: italic;
+          line-height: 1.4;
+          color: #04c399;
+          padding-left: 60px;
         }
 
         nav a {
