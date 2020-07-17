@@ -24,7 +24,7 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
         .location {
           display: flex;
           justify-content: space-between;
-          font-size: 15px;
+          font-size: 13px;
         }
 
         .network-container {
@@ -42,15 +42,25 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
           align-items: center;
         }
 
-        .open .network-selector {
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
+        .network-selector:after {
+          content: '';
+          height: 5px;
+          width: 5px;
+          display: block;
+          margin-left: 10px;
+          border-top: solid 1px #41c9af;
+          border-right: solid 1px #41c9af;
+          transform: rotate(45deg);
+        }
+
+        .open .network-selector:after {
+          transform: rotate(135deg);
         }
 
         .network-selector:before {
           content: '';
-          width: 11px;
-          height: 11px;
+          width: 5px;
+          height: 5px;
           border-radius: 11px;
           background-color: #04c399;
           margin-right: 15px;
@@ -61,19 +71,31 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
           left: 0;
           right: 0;
           background-color: white;
-          border: solid 1px #04c399;
-          border-top: 0;
-          border-bottom-right-radius: 15px;
-          border-bottom-left-radius: 15px;
           margin: 0;
           padding: 0;
           overflow: hidden;
+          z-index: 2;
+          border-radius: 3px;
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+          background-color: #ffffff;
         }
 
         .network-dropdown li {
           list-style: none;
           margin: 0;
           padding: 2px 10px;
+          display: flex;
+          align-items: center;
+        }
+
+        .network-dropdown li:before {
+          content: '';
+          width: 5px;
+          height: 5px;
+          border-radius: 11px;
+          background-color: #04c399;
+          margin-right: 7px;
+          display: block;
         }
 
         .network-dropdown li:hover {
