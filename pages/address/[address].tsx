@@ -43,7 +43,7 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
         </ul>
       </div>
 
-      <SubHeader type="Address">{address.address}</SubHeader>
+      <SubHeader type="Address" qr copy>{address.address}</SubHeader>
 
       <h3>Transactions</h3>
       <div className="break" />
