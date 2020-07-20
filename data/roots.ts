@@ -29,7 +29,7 @@ function transformRoot(fuelRoot: any) {
   return _root;
 }
 
-export async function getRoot(hash: string): Promise<Root> {
+export async function getRoot(hash: string): Promise<Root | null> {
   const fuelRoot = await api.getRootByHash(hash);
 
     if (!fuelRoot) {
@@ -43,5 +43,3 @@ export async function getRoot(hash: string): Promise<Root> {
 export async function getRoots(): Promise<Root[]> {
   return [await getRoot('0xd00971a9272c314d8752256e76a8391eb0d70a8a8d9bbcdfe46a78772c92748e')]
 }
-
-export function addRoot(_root: Root) {}

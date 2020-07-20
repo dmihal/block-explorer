@@ -73,13 +73,14 @@ export default RootPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const _root = await getRoot(params!.rootHash as string);
-  const assets = await getAssets([_root.feeToken]);
 
   if (!_root) {
     res.writeHead(301, { Location: '/roots' });
     res.end();
-    return { props: { _root: null, assets } };
+    return { props: { _root: null, assets: [] } };
   }
+
+  const assets = await getAssets([_root.feeToken]);
 
   return { props: { _root, assets } };
 };

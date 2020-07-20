@@ -1,9 +1,5 @@
-import { NextPage, GetServerSideProps } from 'next';
-import Link from 'next/link';
+import { NextPage } from 'next';
 import Layout from '../components/Layout';
-import SearchBar from 'components/SearchBar';
-import { getNumBlocks } from 'data/blocks';
-import { getTransactions } from 'data/transactions';
 import graphic from 'assets/home-graphic.svg';
 
 const IndexPage: NextPage = () => {

@@ -32,7 +32,7 @@ function transformBlock(fuelBlock: any): Block {
   return block;
 }
 
-export async function getBlock(blockNum: number): Promise<Block> {
+export async function getBlock(blockNum: number): Promise<Block | null> {
   const block = await api.getBlockByHeight(blockNum);
 
   if (!block) {
@@ -57,5 +57,3 @@ export async function getNumBlocks() {
   const state = await api.getState();
   return state.properties.blockHeight.get().toNumber();
 }
-
-export function addBlock(block: Block) {}

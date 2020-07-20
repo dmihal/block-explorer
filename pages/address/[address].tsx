@@ -117,7 +117,7 @@ const _getTransaction = (hash: string) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
-  const address = getAddress(params!.address as string);
+  const address = await getAddress(params!.address as string);
   const assets = getAssets();
 
   if (!address) {

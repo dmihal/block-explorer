@@ -6,7 +6,7 @@ export interface Asset {
   name: string;
   symbol: string;
   decimals: number;
-  id: string;
+  id?: string;
 }
 
 export const assets: { [address: string]: Asset } = {
@@ -46,7 +46,7 @@ export function formatValue(value: string, assetAddress: string) {
   return fromWei(value, unit);
 }
 
-export async function getAsset(addressOrId: string): Asset {
+export async function getAsset(addressOrId: string): Promise<Asset> {
   const token = await api.getToken(addressOrId);
   return assets[token];
 }
