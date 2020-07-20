@@ -1,5 +1,4 @@
-import { getVal, setVal } from './data-storage';
-import './data-mocks';
+import api from './api';
 
 export interface Block {
   height: number;
@@ -14,30 +13,36 @@ export interface Block {
 
 export const blocks: Block[] = [];
 
-export function getBlock(blockNum: number) {
-  const blocks = getVal('blocks', []) as Block[];
-
-  for (const block of blocks) {
-    if (blockNum === block.height) {
-      return block;
-    }
-  }
-  console.log('cannot find block', blockNum);
-  return null;
+function transformBlock(fuelBlock: any): Block {
+  const block: Block = {
+    height: fuelBlock.properties.height.get().toNumber(),
+    hash: '0x',
+    parentHash: fuelBlock.properties.previousBlockHash.get(),
+    producer: fuelBlock.properties.producer.get(),
+    ethereumBlockNumber: fuelBlock.properties.ethereumBlockNumber.get().toNumber(),
+    size: fuelBlock.sizePacked(),
+    timestamp: 0,
+    roots: fuelBlock.properties.roots.get(),
+  };
+  return block;
 }
 
-export function getBlocks() {
-  const blocks = getVal('blocks', []) as Block[];
+export async function getBlock(blockNum: number): Block {
+  const block = await api.getBlockByHeight(blockNum);
 
-  return blocks;
-}
-
-export function addBlock(block: Block) {
-  const blocks = getVal('blocks', []) as Block[];
-
-  if (blocks.filter((b: Block) => b.height === block.height).length > 0) {
-    throw new Error(`Block already exists with height ${block.height}`);
+  if (!block) {
+    console.log('cannot find block', blockNum);
+    return null;
   }
 
-  setVal('blocks', [...blocks, block]);
+  return transformBlock(block);
 }
+
+export async function getBlocks() {
+  return await Promise.all(
+    [0, 1].map((num: number) =>
+      api.getBlockByHeight(num).then((block: any) => transformBlock(block))
+    ));
+}
+
+export function addBlock(block: Block) {}

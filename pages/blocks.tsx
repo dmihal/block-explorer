@@ -28,6 +28,6 @@ const BlocksPage: NextPage<BlocksPageProps> = ({ blocks }) => {
 export default BlocksPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const blocks = getBlocks();
+  const blocks = await getBlocks();
   return { props: { blocks } };
 };

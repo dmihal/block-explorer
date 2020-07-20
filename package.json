@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@fuel-js/api": "^0.0.1",
     "bn.js": "^5.1.2",
     "date-fns": "^2.14.0",
     "ethjs-unit": "^0.1.6",

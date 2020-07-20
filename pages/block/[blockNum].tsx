@@ -73,7 +73,7 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
 export default BlockPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
-  const block = getBlock(parseInt(params!.blockNum as string));
+  const block = await getBlock(parseInt(params!.blockNum as string));
 
   if (!block) {
     res.writeHead(302, { Location: '/blocks' });
