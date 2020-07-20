@@ -2,16 +2,11 @@ import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import SearchBar from 'components/SearchBar';
-import { getBlocks } from 'data/blocks';
+import { getNumBlocks } from 'data/blocks';
 import { getTransactions } from 'data/transactions';
 import graphic from 'assets/home-graphic.svg';
 
-interface IndexPageProps {
-  blockNum: number;
-  numTx: number;
-}
-
-const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
+const IndexPage: NextPage = () => {
   return (
     <Layout title="Fuel" simple>
       <div className="two-col">
@@ -91,11 +86,3 @@ const IndexPage: NextPage<IndexPageProps> = ({ blockNum, numTx }) => {
 };
 
 export default IndexPage;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const blocks = getBlocks();
-  const blockNum = blocks.length > 0 ? blocks[blocks.length - 1].height : 0;
-
-
-  return { props: { blockNum, numTx: getTransactions().length } };
-};

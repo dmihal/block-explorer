@@ -2,7 +2,7 @@ import { NextPage, GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import SearchBar from 'components/SearchBar';
-import { getBlocks } from 'data/blocks';
+import { getNumBlocks } from 'data/blocks';
 import { getTransactions } from 'data/transactions';
 import graphImg from 'assets/graph.png';
 import cardImg from 'assets/credit-card.png';
@@ -136,9 +136,7 @@ const NetworkPage: NextPage<NetworkPageProps> = ({ blockNum, numTx }) => {
 export default NetworkPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const blocks = getBlocks();
-  const blockNum = blocks.length > 0 ? blocks[blocks.length - 1].height : 0;
-
+  const blockNum = await getNumBlocks();
 
   return { props: { blockNum, numTx: getTransactions().length } };
 };

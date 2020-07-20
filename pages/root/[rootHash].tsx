@@ -72,8 +72,8 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
 export default RootPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
-  const _root = getRoot(params!.rootHash as string);
-  const assets = getAssets();
+  const _root = await getRoot(params!.rootHash as string);
+  const assets = await getAssets([_root.feeToken]);
 
   if (!_root) {
     res.writeHead(301, { Location: '/roots' });

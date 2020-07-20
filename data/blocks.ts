@@ -11,12 +11,10 @@ export interface Block {
   roots: string[];
 }
 
-export const blocks: Block[] = [];
-
 function transformBlock(fuelBlock: any): Block {
   const block: Block = {
     height: fuelBlock.properties.height.get().toNumber(),
-    hash: '0x',
+    hash: fuelBlock.keccak256Packed(),
     parentHash: fuelBlock.properties.previousBlockHash.get(),
     producer: fuelBlock.properties.producer.get(),
     ethereumBlockNumber: fuelBlock.properties.ethereumBlockNumber.get().toNumber(),
@@ -27,7 +25,7 @@ function transformBlock(fuelBlock: any): Block {
   return block;
 }
 
-export async function getBlock(blockNum: number): Block {
+export async function getBlock(blockNum: number): Promise<Block> {
   const block = await api.getBlockByHeight(blockNum);
 
   if (!block) {
@@ -39,10 +37,18 @@ export async function getBlock(blockNum: number): Block {
 }
 
 export async function getBlocks() {
+  const state = await api.getState();
+  const numBlocks = state.properties.blockHeight.get().toNumber();
+
   return await Promise.all(
-    [0, 1].map((num: number) =>
-      api.getBlockByHeight(num).then((block: any) => transformBlock(block))
+    [...new Array(numBlocks)].map((_: any, blockNum: number) =>
+      api.getBlockByHeight(blockNum).then((block: any) => transformBlock(block))
     ));
+}
+
+export async function getNumBlocks() {
+  const state = await api.getState();
+  return state.properties.blockHeight.get().toNumber();
 }
 
 export function addBlock(block: Block) {}

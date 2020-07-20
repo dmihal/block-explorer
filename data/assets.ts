@@ -1,3 +1,4 @@
+import api from './api';
 import { fromWei } from 'ethjs-unit';
 
 export interface Asset {
@@ -5,6 +6,7 @@ export interface Asset {
   name: string;
   symbol: string;
   decimals: number;
+  id: string;
 }
 
 export const assets: { [address: string]: Asset } = {
@@ -19,6 +21,13 @@ export const assets: { [address: string]: Asset } = {
     name: 'Dai',
     symbol: 'DAI',
     decimals: 18,
+  },
+  '0xfed4976b61517a687d866ef4357a67bb89474002': {
+    address: '0xfed4976b61517a687d866ef4357a67bb89474002',
+    name: 'FakeDAI',
+    symbol: 'FDAI',
+    decimals: 18,
+    id: '0x01',
   },
 };
 
@@ -37,10 +46,15 @@ export function formatValue(value: string, assetAddress: string) {
   return fromWei(value, unit);
 }
 
-export function getAssets(addresses?: string[]) {
+export async function getAsset(addressOrId: string): Asset {
+  const token = await api.getToken(addressOrId);
+  return assets[token];
+}
+
+export async function getAssets(addresses?: string[]) {
   if (!addresses) {
     return Object.values(assets);
   }
 
-  return addresses.map((address: string) => assets[address]);
+  return Promise.all(addresses.map((address: string) => getAsset(address)));
 }

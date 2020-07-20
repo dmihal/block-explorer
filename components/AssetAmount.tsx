@@ -17,7 +17,7 @@ interface AssetAmountProps {
 
 const formatBalance = (amount: string, address: string, assets: Asset[]) => {
   for (const asset of assets) {
-    if (asset.address === address) {
+    if (asset.address === address || asset.id === address) {
       const unit = units[asset.decimals]!;
 
       return fromWei(amount, unit);

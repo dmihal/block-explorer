@@ -1000,14 +1000,14 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fuel-js/api@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.0.1.tgz#88ada98e4592e698e3bad268ed34c5487ae17fd2"
-  integrity sha512-tP8povpUJNe6pjCMVhv12duZ9vz3R03wBX7SMibz0z8f7r3hb15OmLEw4Ldd2HCb2jl5nTwsMMZdmI1UBL4XuA==
+"@fuel-js/api@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.0.3.tgz#a1473720ae60ca265d8353c3a84b576139136df9"
+  integrity sha512-48EDvtbpOUyUb95O5i6zi0nAKMHfFB98EXf0yIcvqZxUGAvRw4hVRKc+p5vTkOm75wtI5+KFJsatpFGov03g7w==
   dependencies:
     "@fuel-js/common" "^0.1.4"
-    "@fuel-js/interface" "^0.0.1"
-    "@fuel-js/protocol" "^0.1.2"
+    "@fuel-js/interface" "^0.0.2"
+    "@fuel-js/protocol" "^0.1.4"
 
 "@fuel-js/common@^0.1.0", "@fuel-js/common@^0.1.4":
   version "0.1.4"
@@ -1022,17 +1022,17 @@
   optionalDependencies:
     mysql2 "^2.1.0"
 
-"@fuel-js/interface@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@fuel-js/interface/-/interface-0.0.1.tgz#8a1b26466429a4c44b222b014b55640a61004186"
-  integrity sha512-C7WZgACOACuIt87qV2i4ESC/iw6ZgMVLxU5sByW9FqLV1lKJOJFyaYvNaT7KvmxTTy1vi94/YFY97yNGb03htg==
+"@fuel-js/interface@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@fuel-js/interface/-/interface-0.0.2.tgz#ceac80a97944463a5b73e0e7c029b9371d120bd9"
+  integrity sha512-1P1+fDEtyEDzmhSrvxp7OOD/eqLZuNyyoaL0PGlDePgLgrtirQFRe8DEVrWtF2eT8WopgSi1bwPHkJebtDNt9g==
   dependencies:
     "@fuel-js/common" "^0.1.0"
 
-"@fuel-js/protocol@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@fuel-js/protocol/-/protocol-0.1.2.tgz#a08541287d39beeee51c13cdca971cb99199aa98"
-  integrity sha512-bS3SSK0MSzQDdueCWqBJzroFDRgqu3Ka1kLwzlk1QgZTUSz1bHw/08A65lVkV9YbjMfedR//FGQ7EKYKM6HHgg==
+"@fuel-js/protocol@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@fuel-js/protocol/-/protocol-0.1.4.tgz#4bb5b04d7562e57e8c6ed471d1e2fc011f08f030"
+  integrity sha512-M6ksN/F6eJjTlEOlmBIa1jAwlgTMc677NVUm+glUHvtcGJEF8kxEuZriWjs4SuE5AudKeFkmrZleppFkvct3oA==
   dependencies:
     "@fuel-js/common" "^0.1.0"
 

@@ -27,6 +27,6 @@ const RootsPage: NextPage<RootsPageProps> = ({ roots }) => {
 export default RootsPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const roots = getRoots();
+  const roots = await getRoots();
   return { props: { roots } };
 };

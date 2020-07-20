@@ -8,7 +8,7 @@ interface AssetChipProps {
 
 const getAsset = (address: string, assets: Asset[]) => {
   for (const asset of assets) {
-    if (asset.address === address) {
+    if (asset.address === address || asset.id === address) {
       return asset;
     }
   }
