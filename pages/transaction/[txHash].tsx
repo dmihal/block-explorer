@@ -34,7 +34,12 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         <Attributes>
           <Attribute attribute={`Input (${transaction.inputs.length})`}>
             {transaction.inputs.map((input: any, i: number) => (
-              <AssetAmount key={i} amount={input.value} asset={input.asset} assets={assets} />
+              <div key={i}>
+                <AssetAmount key={i} amount={input.value} asset={input.asset} assets={assets} />
+                <div className="twocol-address">
+                  From: <FuelLink type="address">{input.account}</FuelLink>
+                </div>
+              </div>
             ))}
           </Attribute>
         </Attributes>
@@ -44,7 +49,9 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
             {transaction.outputs.map((output: any, i: number) => (
               <div key={i}>
                 <AssetAmount amount={output.value} asset={output.asset} assets={assets} />
-                <div>To: <FuelLink type="address">{output.account}</FuelLink></div>
+                <div className="twocol-address">
+                  To: <FuelLink type="address">{output.account}</FuelLink>
+                </div>
               </div>
             ))}
           </Attribute>
@@ -69,6 +76,13 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         }
         .columns > :global(*) {
           flex: 1 0 0;
+          width: 50%;
+        }
+
+        .twocol-address {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         @media (max-width: 600px) {
@@ -84,8 +98,8 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
 export default TransactionPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
-  const transaction = getTransaction(params!.txHash as string);
-  const assets = getAssets();
+  const transaction = await getTransaction(params!.txHash as string);
+  const assets = await getAssets();
 
   if (!transaction) {
     res.writeHead(301, { Location: '/transactions' });

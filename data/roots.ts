@@ -38,7 +38,7 @@ export async function getRoot(hash: string): Promise<Root | null> {
   }
 
   const transactions = await api.getTransactions(
-    fuelRoot.addon.decoded.properties.blockHeight.get().toNumber() + 1, //TODO
+    fuelRoot.addon.decoded.properties.blockHeight.get().toNumber(),
     fuelRoot.addon.decoded.properties.rootIndex.get().toNumber()
   );
 
