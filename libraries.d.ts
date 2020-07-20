@@ -13,15 +13,25 @@ declare module '*.png' {
 }
 
 declare module '@fuel-js/api' {
+  interface Struct {
+    keccak256Packed: string;
+    sizePacked: number;
+    properties: any;
+    addon: {
+      decoded: Struct;
+    };
+  }
+
   export default class FuelAPI {
     constructor(network?: string, base?: string);
 
     getAccount(owner?: string): Promise<any>;
     getToken(address: string): Promise<string>;
     getAddressId(address: string): Promise<string>;
-    getBlockByHeight(height: number): Promise<any>;
-    getState(): Promise<any>;
-    getRootByHash(hash: string): Promise<any>;
+    getBlockByHeight(height: number): Promise<Struct>;
+    getState(): Promise<Struct>;
+    getRootByHash(hash: string): Promise<Struct>;
     getTransactions(blockHeight: number, rootIndex: number): Promise<any>;
+    getTransactionByHash(hash: string): Promise<any>
   }
 }

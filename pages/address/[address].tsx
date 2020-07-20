@@ -108,8 +108,8 @@ const txToTableTX = (tx: Transaction): TableTX => {
   };
 }
 
-const _getTransaction = (hash: string) => {
-  const tx = getTransaction(hash);
+const _getTransaction = async (hash: string) => {
+  const tx = await getTransaction(hash);
   if (!tx) {
     throw new Error(`Couldn't find tx ${hash}`);
   }
@@ -118,7 +118,7 @@ const _getTransaction = (hash: string) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const address = await getAddress(params!.address as string);
-  const assets = getAssets();
+  const assets = await getAssets();
 
   if (!address) {
     res.writeHead(302, { Location: '/accounts' });
@@ -126,7 +126,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params, res }) =>
     return { props: { address: null, assets, transactions: [] } };
   }
 
-  const transactions = address.transactions.map(_getTransaction).map(txToTableTX);
+  const transactions = await Promise.all(address.transactions.map(
+    (txHash: string) => _getTransaction(txHash).then(txToTableTX)
+  ));
 
   return { props: { address, assets, transactions } };
 };
