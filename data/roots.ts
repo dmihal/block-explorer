@@ -13,7 +13,7 @@ export interface Root {
   transactions: string[];
 }
 
-function transformRoot(fuelRoot: any) {
+function transformRoot(fuelRoot: any, transactions: string[] = []) {
   const _root: Root = {
     hash: fuelRoot.keccak256Packed(),
     producer: fuelRoot.properties.rootProducer.get(),
@@ -24,7 +24,7 @@ function transformRoot(fuelRoot: any) {
     fee: fuelRoot.properties.fee.get().toNumber(),
     feeToken: fuelRoot.properties.feeToken.hex(),
     timestamp: 0,
-    transactions: [],
+    transactions,
   };
   return _root;
 }
@@ -32,12 +32,17 @@ function transformRoot(fuelRoot: any) {
 export async function getRoot(hash: string): Promise<Root | null> {
   const fuelRoot = await api.getRootByHash(hash);
 
-    if (!fuelRoot) {
+  if (!fuelRoot) {
     console.log('cannot find root', hash);
     return null;
   }
 
-  return transformRoot(fuelRoot);
+  const transactions = await api.getTransactions(
+    fuelRoot.addon.decoded.properties.blockHeight.get().toNumber() + 1, //TODO
+    fuelRoot.addon.decoded.properties.rootIndex.get().toNumber()
+  );
+
+  return transformRoot(fuelRoot, transactions);
 }
 
 export async function getRoots(): Promise<Root[]> {

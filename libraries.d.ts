@@ -22,5 +22,6 @@ declare module '@fuel-js/api' {
     getBlockByHeight(height: number): Promise<any>;
     getState(): Promise<any>;
     getRootByHash(hash: string): Promise<any>;
+    getTransactions(blockHeight: number, rootIndex: number): Promise<any>;
   }
 }

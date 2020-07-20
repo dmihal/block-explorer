@@ -1000,10 +1000,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fuel-js/api@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.0.3.tgz#a1473720ae60ca265d8353c3a84b576139136df9"
-  integrity sha512-48EDvtbpOUyUb95O5i6zi0nAKMHfFB98EXf0yIcvqZxUGAvRw4hVRKc+p5vTkOm75wtI5+KFJsatpFGov03g7w==
+"@fuel-js/api@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.0.4.tgz#8025068708847007b0f5c3d5b2c25988fecafab2"
+  integrity sha512-uPXtyh/Q/l/32iJExI0twCeZt/vIMbB1jo13EJx63wtjjmT25iyB07gMU0dcUZOZRchN9TC4yCM3lh9MVDIPAA==
   dependencies:
     "@fuel-js/common" "^0.1.4"
     "@fuel-js/interface" "^0.0.2"
