@@ -1,5 +1,7 @@
 import api from './api';
 
+const ZERO_BLOCK = '0x0000000000000000000000000000000000000000000000000000000000000000';
+
 export interface Block {
   height: number;
   hash: string;
@@ -7,18 +9,23 @@ export interface Block {
   producer: string;
   ethereumBlockNumber: number;
   size: number;
+  numAddresses: number;
+  numTokens: number;
   timestamp: number;
   roots: string[];
 }
 
 function transformBlock(fuelBlock: any): Block {
+  const parentHash = fuelBlock.properties.previousBlockHash.get();
   const block: Block = {
     height: fuelBlock.properties.height.get().toNumber(),
     hash: fuelBlock.keccak256Packed(),
-    parentHash: fuelBlock.properties.previousBlockHash.get(),
+    parentHash: parentHash === ZERO_BLOCK ? null : parentHash,
     producer: fuelBlock.properties.producer.get(),
     ethereumBlockNumber: fuelBlock.properties.ethereumBlockNumber.get().toNumber(),
     size: fuelBlock.sizePacked(),
+    numAddresses: fuelBlock.properties.numAddresses.get().toNumber(),
+    numTokens: fuelBlock.properties.numTokens.get().toNumber(),
     timestamp: 0,
     roots: fuelBlock.properties.roots.get(),
   };

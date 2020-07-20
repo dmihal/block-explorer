@@ -38,8 +38,8 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
 
         <Attribute attribute="Block height">{block.height}</Attribute>
         <Attribute attribute="Ethereum block number">{block.ethereumBlockNumber}</Attribute>
-        <Attribute attribute="Number of tokens">TODO</Attribute>
-        <Attribute attribute="Number of addresses">TODO</Attribute>
+        <Attribute attribute="Number of tokens">{block.numTokens}</Attribute>
+        <Attribute attribute="Number of addresses">{block.numAddresses}</Attribute>
         <Attribute attribute={`Roots (${block.roots.length})`}>
           {block.roots.map((_root: string) => (
             <div key={_root} className="root">
