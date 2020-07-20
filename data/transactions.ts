@@ -20,6 +20,6 @@ export function getTransactions() {
   return [] as Transaction[];
 }
 
-export function getTransaction(hash: string) {
+export function getTransaction(_hash: string) {
   return null;
 }

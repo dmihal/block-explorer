@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import qricon from 'assets/qr-icon.svg';
 import Modal from './Modal';
 
@@ -12,11 +13,20 @@ interface SubHeaderProps {
 
 const SubHeader: React.FC<SubHeaderProps> = ({ type, inline, children, qr, copy }) => {
   const [showQR, setShowQR] = useState(false);
+
+  const onCopy = () => null; //TODO
   return (
     <h2 className={inline ? 'inline' : ''}>
       <div className="primary">{type}{!inline && ':'}</div>
       <div className="secondary">
         <div className="secondary-text">{children}</div>
+
+        {copy && (
+          <CopyToClipboard text={children as string} onCopy={onCopy}>
+            <button className="button" />
+          </CopyToClipboard>
+        )}
+
         {qr && (
           <button
             className="button"

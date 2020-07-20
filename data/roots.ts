@@ -41,5 +41,5 @@ export async function getRoot(hash: string): Promise<Root | null> {
 }
 
 export async function getRoots(): Promise<Root[]> {
-  return [await getRoot('0xd00971a9272c314d8752256e76a8391eb0d70a8a8d9bbcdfe46a78772c92748e')]
+  return [(await getRoot('0xd00971a9272c314d8752256e76a8391eb0d70a8a8d9bbcdfe46a78772c92748e'))!]
 }
