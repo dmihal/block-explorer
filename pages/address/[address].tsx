@@ -51,6 +51,10 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
       <SubHeader type="Address" qr copy>{address.address}</SubHeader>
 
       <h3>Transactions</h3>
+      <div>
+        Showing <span className="num">{transactions.length}</span> out of {}
+        <span className="num">{transactions.length}</span> transactions
+      </div>
       <div className="break" />
       <Table
         columns={[
@@ -100,6 +104,10 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
           flex: 1 0 0;
         }
 
+        .num {
+          border-radius: 3px;
+          background-color: #f5f5f5;
+        }
         .break {
           clear: both;
         }
