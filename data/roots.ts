@@ -18,7 +18,7 @@ function transformRoot(fuelRoot: any, transactions: string[] = []) {
     hash: fuelRoot.keccak256Packed(),
     producer: fuelRoot.properties.rootProducer.get(),
     merkleTreeRoot: fuelRoot.properties.merkleTreeRoot.get(),
-    block: 0,
+    block: fuelRoot.addon.decoded.properties.blockHeight.get().toNumber(),
     size: fuelRoot.properties.rootLength.get().toNumber(),
     commitmentHash: fuelRoot.properties.commitmentHash.get(),
     fee: fuelRoot.properties.fee.get().toNumber(),

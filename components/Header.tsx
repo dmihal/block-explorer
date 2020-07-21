@@ -51,6 +51,10 @@ const Header = () => {
           color: #021d17;
           padding: 0 15px;
         }
+        nav a:hover {
+          color: #00c9a1;
+        }
+
         @media (max-width: 600px) {
           header {
             flex-wrap: wrap;

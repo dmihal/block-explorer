@@ -61,6 +61,9 @@ const Layout: React.FC<Props> = ({
           color: #04c399;
           text-decoration: none;
         }
+        a:hover {
+          color: #03a383;
+        }
       `}</style>
       <SFPro />
     </div>
