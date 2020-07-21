@@ -18,9 +18,9 @@ export interface Transaction {
   signature: string;
 }
 
-function transformTx(fuelTx: any): Transaction {
+function transformTx(fuelTx: any, hash: string): Transaction {
   const tx: Transaction = {
-    hash: fuelTx.decoded.keccak256Packed(),
+    hash,
     root: '0x',
     block: 0,
     inputs: fuelTx.inputProofs.map((input: any) => ({
@@ -53,5 +53,5 @@ export async function getTransaction(hash: string) {
     return null;
   }
 
-  return transformTx(tx);
+  return transformTx(tx, hash);
 }
