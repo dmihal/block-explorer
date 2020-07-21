@@ -48,7 +48,6 @@ const SearchBar: React.FC = () => {
           height: 55px;
           border: solid 2px #d4dee5;
           background-color: #ffffff;
-          font-family: Poppins;
           font-size: 15px;
           font-weight: 500;
           color: #021d17;

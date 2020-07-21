@@ -35,7 +35,7 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
         </Attribute>
         <Attribute attribute="Merkle tree root">{_root.merkleTreeRoot}</Attribute>
         <Attribute attribute="Commitment hash">{_root.commitmentHash}</Attribute>
-        <Attribute attribute="Size">{_root.size}</Attribute>
+        <Attribute attribute="Size">{_root.size} Bytes</Attribute>
         <Attribute attribute="Fee">
           <AssetAmount amount={_root.fee} asset={_root.feeToken} assets={assets} />
         </Attribute>
