@@ -17,7 +17,7 @@ interface NetworkPageProps {
 
 const NetworkPage: NextPage<NetworkPageProps> = ({ blockNum, numTx }) => {
   return (
-    <Layout title="Block Explorer">
+    <Layout title="Block Explorer" noSearch>
       <div className="col">
         <div className="search-container">
           <SearchBar />

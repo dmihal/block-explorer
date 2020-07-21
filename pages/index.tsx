@@ -4,7 +4,7 @@ import graphic from 'assets/home-graphic.svg';
 
 const IndexPage: NextPage = () => {
   return (
-    <Layout title="Fuel" simple>
+    <Layout title="Fuel" simple noSearch>
       <div className="two-col">
         <div className="graphic" />
 

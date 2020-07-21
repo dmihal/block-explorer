@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import logo from 'assets/bolt.svg';
+import SearchBar from './SearchBar';
 
-const Header = () => {
+interface HeaderProps {
+  noSearch?: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ noSearch }) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -10,6 +15,12 @@ const Header = () => {
       <Link href="/">
         <a className="logo">Fuel</a>
       </Link>
+
+      {!noSearch && (
+        <div className="search-container">
+          <SearchBar skinny />
+        </div>
+      )}
 
       <div onClick={() => setOpen(!isOpen)} className="menu-btn"><div /></div>
 
@@ -32,7 +43,7 @@ const Header = () => {
 
         .logo {
           background-image: url('${logo}');
-          height: 54.7px;
+          height: 54px;
           background-size: contain;
           background-position: 0 center;
           background-repeat: no-repeat;
@@ -43,8 +54,20 @@ const Header = () => {
           line-height: 1.4;
           color: #04c399;
           padding-left: 60px;
+          margin-right: 45px;
         }
 
+        .search-container {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          max-width: 450px;
+        }
+
+        nav {
+          margin-left: 8px;
+        }
         nav a {
           text-decoration: none;
           line-height: 2.56;
@@ -53,6 +76,12 @@ const Header = () => {
         }
         nav a:hover {
           color: #00c9a1;
+        }
+
+        @media (max-width: 800px) {
+          .search-container {
+            display: none;
+          }
         }
 
         @media (max-width: 600px) {

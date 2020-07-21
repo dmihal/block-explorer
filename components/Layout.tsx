@@ -6,17 +6,18 @@ import { BreadCrumb } from './BreadCrumbs';
 import SFPro from './SFPro';
 
 type Props = {
-  children?: ReactNode;
   title?: string;
   breadCrumbs?: BreadCrumb[];
   simple?: boolean;
+  noSearch?: boolean;
 }
 
 const Layout: React.FC<Props> = ({
   children,
   breadCrumbs = [],
-  title = 'This is the default title',
+  title = 'Fuel Labs',
   simple,
+  noSearch,
 }) => {
   return (
     <div className="container">
@@ -26,7 +27,7 @@ const Layout: React.FC<Props> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <Header />
+      <Header noSearch={noSearch} />
       {!simple && (
         <Location breadCrumbs={breadCrumbs} />
       )}

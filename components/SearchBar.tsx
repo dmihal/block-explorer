@@ -3,7 +3,11 @@ import { useRouter } from 'next/router';
 import search from 'assets/search.svg';
 import warning from 'assets/warning.png';
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  skinny?: boolean;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ skinny }) => {
   const router = useRouter();
   const [val, setVal] = useState('');
   const [status, setStatus] = useState('');
@@ -45,7 +49,7 @@ const SearchBar: React.FC = () => {
           position: relative;
         }
         .input {
-          height: 55px;
+          height: ${skinny ? 36 : 55}px;
           border: solid 2px #d4dee5;
           background-color: #ffffff;
           font-size: 15px;
@@ -63,12 +67,15 @@ const SearchBar: React.FC = () => {
         .input:placeholder {
           color: #69737d;
         }
+        .error {
+          font-size: 15px;
+        }
         .search {
           background-image: url('${search}');
           background-size: 20px;
           background-position: center;
-          height: 55px;
-          width: 55px;
+          height: ${skinny ? 36 : 55}px;
+          width: ${skinny ? 36 : 55}px;
           background-color: #04c399;
           border-top-right-radius: 8px;
           border-bottom-right-radius: 8px;
@@ -98,7 +105,7 @@ const SearchBar: React.FC = () => {
           position: absolute;
           left: 0;
           right: 0;
-          top: 55px;
+          top: ${skinny ? 36 : 55}px;
           background: white;
           font-weight: 500;
           line-height: 3.5;
