@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Header from './Header';
 import Location from './Location';
 import { BreadCrumb } from './BreadCrumbs';
+import SFPro from './SFPro';
 
 type Props = {
   children?: ReactNode;
@@ -23,7 +24,6 @@ const Layout: React.FC<Props> = ({
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
       </Head>
 
       <Header />
@@ -38,7 +38,7 @@ const Layout: React.FC<Props> = ({
       <style jsx>{`
         .container {
           max-width: 1080px;
-          font-family: 'Poppins', sans-serif;
+          font-family: 'SF Text', sans-serif;
           display: flex;
           flex-direction: column;
           min-height: 100%;
@@ -62,6 +62,7 @@ const Layout: React.FC<Props> = ({
           text-decoration: none;
         }
       `}</style>
+      <SFPro />
     </div>
   );
 };

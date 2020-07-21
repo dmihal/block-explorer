@@ -25,8 +25,6 @@ const Header = () => {
         header {
           display: flex;
           justify-content: space-between;
-
-          font-family: Poppins;
           font-size: 18px;
           font-weight: 500;
           padding: 68px 0 50px;
