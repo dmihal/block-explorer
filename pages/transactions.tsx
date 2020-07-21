@@ -28,6 +28,6 @@ const TransactionsPage: NextPage<IndexPageProps> = ({ transactions }) => {
 export default TransactionsPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const transactions = getTransactions();
+  const transactions = await getTransactions();
   return { props: { transactions } };
 };

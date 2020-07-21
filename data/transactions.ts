@@ -46,7 +46,12 @@ export function getTransactions() {
 }
 
 export async function getTransaction(hash: string) {
-  const tx = await api.getTransactionByHash(hash);
+  const tx = await api.getTransactionByHash(hash).catch((error: any) => null);
+
+  if (!tx) {
+    console.log('cannot find transaction', hash);
+    return null;
+  }
 
   return transformTx(tx);
 }
