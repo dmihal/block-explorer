@@ -30,25 +30,23 @@ const Table: React.FC<TableProps> = ({ columns, data, children, onScrollBottom, 
 
   return (
     <div>
-      {!showEmptyState && (
-        <div className="table">
-          <div className="header">
-            {columns.map(column => (
-              <Cell column={column} key={column.title} header>
-                {column.title}
-              </Cell>
-            ))}
-          </div>
-
-          <div className="row-collection" onScroll={onScrollBottom && onScroll}>
-            {data.map((row, rowNum) => (
-              <Row data={row} columns={columns} key={rowNum} assets={assets} />
-            ))}
-          </div>
+      <div className="table">
+        <div className="header">
+          {columns.map(column => (
+            <Cell column={column} key={column.title} header>
+              {column.title}
+            </Cell>
+          ))}
         </div>
-      )}
 
-      {showEmptyState && <div className="empty-container">{children}</div>}
+        {showEmptyState && <div className="empty-container">{children}</div>}
+
+        <div className="row-collection" onScroll={onScrollBottom && onScroll}>
+          {data.map((row, rowNum) => (
+            <Row data={row} columns={columns} key={rowNum} assets={assets} />
+          ))}
+        </div>
+      </div>
 
       <style jsx>{`
         .table {

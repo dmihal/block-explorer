@@ -8,6 +8,7 @@ import SubHeader from 'components/SubHeader';
 import { getAddress, Address } from 'data/addresses';
 import { getAssets, Asset } from 'data/assets';
 import { getTransaction, Transaction } from 'data/transactions';
+import emptyTray from 'assets/empty-tray.svg';
 
 interface AddressPageProps {
   address: Address | null;
@@ -33,7 +34,7 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
     <Layout title="Address">
       <div className="balances">
         <h3>Balances</h3>
-        <ul>
+        <ul className="balance-list">
           {Object.entries(address.balances).map(([asset, balance]: [string, string]) => (
             <div key={asset} className="balance">
               <div><AssetChip address={asset} assets={assets} /></div>
@@ -41,6 +42,10 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
             </div>
           ))}
         </ul>
+
+        {Object.entries(address.balances).length === 0 && (
+          <div className="empty-balance">Balance is empty</div>
+        )}
       </div>
 
       <SubHeader type="Address" qr copy>{address.address}</SubHeader>
@@ -58,7 +63,9 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
         ]}
         data={transactions}
         assets={assets}
-      />
+      >
+        <div className="empty">This address has not competed a transaction</div>
+      </Table>
 
       <style jsx>{`
         .balances {
@@ -69,6 +76,8 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
           padding: 16px 20px;
           background: white;
           float: right;
+          display: flex;
+          flex-direction: column;
         }
 
         h3 {
@@ -77,6 +86,9 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
           color: #26282a;
         }
 
+        .balance-list {
+          margin: 0;
+        }
         .balance {
           display: flex;
           font-size: 16px;
@@ -90,6 +102,21 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
 
         .break {
           clear: both;
+        }
+
+        .empty-balance {
+          color: #26282a;
+          text-align: center;
+          flex: 1;
+          padding-top: 50px;
+          background-image: url('${emptyTray}');
+          background-repeat: no-repeat;
+          background-position: top center;
+          background-size: 55px;
+        }
+
+        .empty {
+          color: #26282a;
         }
       `}</style>
     </Layout>
