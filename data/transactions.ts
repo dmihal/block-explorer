@@ -1,4 +1,5 @@
 import api from './api';
+import { getBlock } from './blocks';
 
 export interface UTXO {
   value: string;
@@ -15,14 +16,17 @@ export interface Transaction {
   feeToken: string;
   fee: string;
   size: number;
-  signature: string;
+  timestamp: number;
 }
 
-function transformTx(fuelTx: any, hash: string): Transaction {
+async function transformTx(fuelTx: any, hash: string): Transaction {
+  const block = await getBlock(parseInt(fuelTx.blockHeight));
+  const rootHash = block.roots[parseInt(fuelTx.rootIndex)];
+
   const tx: Transaction = {
     hash,
-    root: '0x',
-    block: 0,
+    root: rootHash,
+    block: parseInt(fuelTx.blockHeight),
     inputs: fuelTx.inputProofs.map((input: any) => ({
       account: input.properties.owner.get(),
       asset: input.properties.token.hex(),
@@ -33,10 +37,10 @@ function transformTx(fuelTx: any, hash: string): Transaction {
       asset: output.properties.token.hex(),
       value: output.properties.amount.get().toString(),
     })),
-    feeToken: '0x01',
-    fee: '0',
+    feeToken: fuelTx.signatureFeeToken,
+    fee: fuelTx.signatureFee,
     size: fuelTx.decoded.sizePacked(),
-    signature: '0x',
+    timestamp: parseInt(fuelTx.timestamp),
   };
   return tx;
 }
@@ -53,5 +57,5 @@ export async function getTransaction(hash: string) {
     return null;
   }
 
-  return transformTx(tx, hash);
+  return await transformTx(tx, hash);
 }
