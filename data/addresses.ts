@@ -16,7 +16,7 @@ export async function getAddress(address: string): Promise<Address | null> {
 
   const transactions = inputs
     .filter((input: any) => input.properties.transactionHashId)
-    .map((input: any) => input.properties.transactionHashId.get());
+    .map((input: any) => input.properties.transactionHashId().get());
 
   return {
     address,

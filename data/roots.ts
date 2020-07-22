@@ -16,13 +16,13 @@ export interface Root {
 function transformRoot(fuelRoot: any, transactions: string[] = []) {
   const _root: Root = {
     hash: fuelRoot.keccak256Packed(),
-    producer: fuelRoot.properties.rootProducer.get(),
-    merkleTreeRoot: fuelRoot.properties.merkleTreeRoot.get(),
-    block: fuelRoot.addon.decoded.properties.blockHeight.get().toNumber(),
-    size: fuelRoot.properties.rootLength.get().toNumber(),
-    commitmentHash: fuelRoot.properties.commitmentHash.get(),
-    fee: fuelRoot.properties.fee.get().toNumber(),
-    feeToken: fuelRoot.properties.feeToken.hex(),
+    producer: fuelRoot.properties.rootProducer().get(),
+    merkleTreeRoot: fuelRoot.properties.merkleTreeRoot().get(),
+    block: fuelRoot.getAddon().properties.blockHeight().get().toNumber(),
+    size: fuelRoot.properties.rootLength().get().toNumber(),
+    commitmentHash: fuelRoot.properties.commitmentHash().get(),
+    fee: fuelRoot.properties.fee().get().toNumber(),
+    feeToken: fuelRoot.properties.feeToken().hex(),
     timestamp: 0,
     transactions,
   };

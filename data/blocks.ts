@@ -16,18 +16,18 @@ export interface Block {
 }
 
 function transformBlock(fuelBlock: any): Block {
-  const parentHash = fuelBlock.properties.previousBlockHash.get();
+  const parentHash = fuelBlock.properties.previousBlockHash().get();
   const block: Block = {
-    height: fuelBlock.properties.height.get().toNumber(),
+    height: fuelBlock.properties.height().get().toNumber(),
     hash: fuelBlock.keccak256Packed(),
     parentHash: parentHash === ZERO_BLOCK ? null : parentHash,
-    producer: fuelBlock.properties.producer.get(),
-    ethereumBlockNumber: fuelBlock.properties.ethereumBlockNumber.get().toNumber(),
+    producer: fuelBlock.properties.producer().get(),
+    ethereumBlockNumber: fuelBlock.properties.blockNumber().get().toNumber(),
     size: fuelBlock.sizePacked(),
-    numAddresses: fuelBlock.properties.numAddresses.get().toNumber(),
-    numTokens: fuelBlock.properties.numTokens.get().toNumber(),
+    numAddresses: fuelBlock.properties.numAddresses().get().toNumber(),
+    numTokens: fuelBlock.properties.numTokens().get().toNumber(),
     timestamp: 0,
-    roots: fuelBlock.properties.roots.get(),
+    roots: fuelBlock.properties.roots().get(),
   };
   return block;
 }
@@ -45,7 +45,7 @@ export async function getBlock(blockNum: number): Promise<Block | null> {
 
 export async function getBlocks() {
   const state = await api.getState();
-  const numBlocks = state.properties.blockHeight.get().toNumber();
+  const numBlocks = state.properties.blockHeight().get().toNumber();
 
   return await Promise.all(
     [...new Array(numBlocks)].map((_: any, blockNum: number) =>
@@ -55,5 +55,5 @@ export async function getBlocks() {
 
 export async function getNumBlocks() {
   const state = await api.getState();
-  return state.properties.blockHeight.get().toNumber();
+  return state.properties.blockHeight().get().toNumber();
 }
