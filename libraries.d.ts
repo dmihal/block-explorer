@@ -13,10 +13,10 @@ declare module '*.png' {
 }
 
 declare module '@fuel-js/api' {
-  interface Struct {
+  interface Struct<P = any> {
     keccak256Packed: string;
     sizePacked: number;
-    properties: any;
+    properties: P;
     addon: {
       decoded: Struct;
     };

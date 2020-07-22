@@ -19,9 +19,9 @@ export interface Transaction {
   timestamp: number;
 }
 
-async function transformTx(fuelTx: any, hash: string): Transaction {
+async function transformTx(fuelTx: any, hash: string): Promise<Transaction> {
   const block = await getBlock(parseInt(fuelTx.blockHeight));
-  const rootHash = block.roots[parseInt(fuelTx.rootIndex)];
+  const rootHash = block ? block.roots[parseInt(fuelTx.rootIndex)] : null;
 
   const tx: Transaction = {
     hash,
