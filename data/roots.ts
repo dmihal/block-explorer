@@ -38,8 +38,8 @@ export async function getRoot(hash: string): Promise<Root | null> {
   }
 
   const transactions = await api.getTransactions(
-    fuelRoot.addon.decoded.properties.blockHeight.get().toNumber(),
-    fuelRoot.addon.decoded.properties.rootIndex.get().toNumber()
+    fuelRoot.getAddon().properties.blockHeight().get().toNumber(),
+    fuelRoot.getAddon().properties.rootIndex().get().toNumber()
   );
 
   return transformRoot(fuelRoot, transactions);

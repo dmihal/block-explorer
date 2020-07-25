@@ -1,6 +1,7 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Router from 'next/router';
 import AssetAmount from 'components/AssetAmount';
+import AssetChip from 'components/AssetChip';
 import { Attributes, Attribute } from 'components/Attributes';
 import Layout from 'components/Layout';
 import FuelLink from 'components/FuelLink';
@@ -59,8 +60,11 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
       </div>
 
       <Attributes>
+        <Attribute attribute="Fee Token">
+          <AssetChip address={transaction.feeToken} assets={assets} />
+        </Attribute>
         <Attribute attribute="Fee">
-          <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} />
+          <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} noChip />
         </Attribute>
         <Attribute attribute="Data size">{transaction.size}</Attribute>
         <Attribute attribute={`Witness (${transaction.inputs.length})`}>

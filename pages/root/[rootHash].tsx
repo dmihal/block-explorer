@@ -1,5 +1,6 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Router from 'next/router';
+import AssetChip from 'components/AssetChip';
 import AssetAmount from 'components/AssetAmount';
 import { Attributes, Attribute } from 'components/Attributes';
 import FuelLink from 'components/FuelLink';
@@ -36,8 +37,11 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
         <Attribute attribute="Merkle tree root">{_root.merkleTreeRoot}</Attribute>
         <Attribute attribute="Commitment hash">{_root.commitmentHash}</Attribute>
         <Attribute attribute="Size">{_root.size} Bytes</Attribute>
+        <Attribute attribute="Fee Token">
+          <AssetChip address={_root.feeToken} assets={assets} />
+        </Attribute>
         <Attribute attribute="Fee">
-          <AssetAmount amount={_root.fee} asset={_root.feeToken} assets={assets} />
+          <AssetAmount amount={_root.fee} asset={_root.feeToken} assets={assets} noChip />
         </Attribute>
         <Attribute attribute="Transactions">
           {_root.transactions.map((tx: string) => (
