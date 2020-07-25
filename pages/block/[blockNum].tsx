@@ -1,6 +1,7 @@
 import { NextPage, GetServerSideProps } from 'next';
 import Router from 'next/router';
 import { Attributes, Attribute } from 'components/Attributes';
+import EtherscanLink from 'components/EtherscanLink';
 import Layout from 'components/Layout';
 import FuelLink from 'components/FuelLink';
 import SubHeader from 'components/SubHeader';
@@ -37,7 +38,9 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
         )}
 
         <Attribute attribute="Block height">{block.height}</Attribute>
-        <Attribute attribute="Ethereum block number">{block.ethereumBlockNumber}</Attribute>
+        <Attribute attribute="Ethereum block number">
+          <EtherscanLink block={block.ethereumBlockNumber}>{block.ethereumBlockNumber}</EtherscanLink>
+        </Attribute>
         <Attribute attribute="Number of tokens">{block.numTokens}</Attribute>
         <Attribute attribute="Number of addresses">{block.numAddresses}</Attribute>
         <Attribute attribute={`Roots (${block.roots.length})`}>

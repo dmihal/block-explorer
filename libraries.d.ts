@@ -17,9 +17,7 @@ declare module '@fuel-js/api' {
     keccak256Packed: string;
     sizePacked: number;
     properties: P;
-    addon: {
-      decoded: Struct;
-    };
+    getAddon(): Struct;
   }
 
   export default class FuelAPI {
