@@ -30,6 +30,10 @@ export const Attribute: React.FC<AttributeProps> = ({ attribute, children }) => 
           font-size: 16px;
         }
 
+        dl {
+          margin: 0;
+        }
+
         dt {
           flex: 1 0 0;
           text-align: right;

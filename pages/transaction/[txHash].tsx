@@ -35,12 +35,13 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         <Attributes>
           <Attribute attribute={`Input (${transaction.inputs.length})`}>
             {transaction.inputs.map((input: any, i: number) => (
-              <div key={i}>
-                <AssetAmount key={i} amount={input.value} asset={input.asset} assets={assets} />
-                <div className="twocol-address">
-                  From: <FuelLink type="address">{input.account}</FuelLink>
-                </div>
-              </div>
+              <AssetAmount key={i} amount={input.value} asset={input.asset} assets={assets} />
+            ))}
+          </Attribute>
+
+          <Attribute attribute={`Senders (${transaction.inputs.length})`}>
+            {transaction.inputs.map((input: any) => (
+              <FuelLink key={input.account} type="address">{input.account}</FuelLink>
             ))}
           </Attribute>
         </Attributes>
@@ -51,7 +52,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
               <div key={i}>
                 <AssetAmount amount={output.value} asset={output.asset} assets={assets} />
                 <div className="twocol-address">
-                  To: <FuelLink type="address">{output.account}</FuelLink>
+                  <FuelLink type="address">{output.account}</FuelLink>
                 </div>
               </div>
             ))}
@@ -67,11 +68,6 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
           <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} noChip />
         </Attribute>
         <Attribute attribute="Data size">{transaction.size}</Attribute>
-        <Attribute attribute={`Witness (${transaction.inputs.length})`}>
-          {transaction.inputs.map((input: any) => (
-            <div key={input.account}><FuelLink type="address">{input.account}</FuelLink></div>
-          ))}
-        </Attribute>
       </Attributes>
 
       <style jsx>{`
@@ -83,6 +79,11 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
           width: 50%;
         }
 
+        .columns :global(dt) {
+          flex: 2 0 0;
+          max-width: 110px;
+        }
+
         .twocol-address {
           white-space: nowrap;
           overflow: hidden;
@@ -92,6 +93,10 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         @media (max-width: 600px) {
           .columns {
             flex-direction: column;
+          }
+
+          .columns > :global(*) {
+            width: initial;
           }
         }
       `}</style>
