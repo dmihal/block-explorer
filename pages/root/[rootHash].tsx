@@ -6,15 +6,24 @@ import { Attributes, Attribute } from 'components/Attributes';
 import FuelLink from 'components/FuelLink';
 import Layout from 'components/Layout';
 import SubHeader from 'components/SubHeader';
+import Table from 'components/Table';
 import { getAssets, Asset } from 'data/assets';
 import { getRoot, Root } from 'data/roots';
+import { getTransaction, Transaction } from 'data/transactions';
+
+interface TableTX {
+  index: string;
+  hash: string;
+  timestamp: number;
+}
 
 interface RootPageProps {
   _root: Root | null;
+  transactions: TableTX[];
   assets: Asset[];
 }
 
-const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
+const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
   if (!_root) {
     Router.push('/roots');
     return null;
@@ -49,6 +58,18 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
               <FuelLink type="transaction">{tx}</FuelLink>
             </div>
           ))}
+
+          <Table
+            columns={[
+              { name: 'index', title: 'Index', type: 'text', minWidth: 40, grow: 0 },
+              { name: 'hash', title: 'Transaction', type: 'link', linkType: 'transaction', minWidth: 50 },
+              { name: 'timestamp', title: 'Created (UTC)', type: 'date', format: 'yyyy-MM-dd HH:mm' },
+            ]}
+            data={transactions}
+            assets={assets}
+          >
+            <div className="empty">This address has not competed a transaction</div>
+          </Table>
         </Attribute>
       </Attributes>
 
@@ -75,16 +96,34 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
 
 export default RootPage;
 
+const txToTableTX = (tx: Transaction, index: number): TableTX => {
+  return {
+    index,
+    hash: tx.hash,
+    timestamp: Date.now(), // TODO: real date
+  };
+}
+
+const _getTransaction = async (hash: string, index: number) => {
+  const tx = await getTransaction(hash);
+  if (!tx) {
+    throw new Error(`Couldn't find tx ${hash}`);
+  }
+  return txToTableTX(tx, index);
+}
+
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const _root = await getRoot(params!.rootHash as string);
 
   if (!_root) {
     res.writeHead(301, { Location: '/roots' });
     res.end();
-    return { props: { _root: null, assets: [] } };
+    return { props: { _root: null, assets: [], transactions: [] } };
   }
 
   const assets = await getAssets([_root.feeToken]);
 
-  return { props: { _root, assets } };
+  const transactions = await Promise.all(_root.transactions.map(_getTransaction));
+
+  return { props: { _root, assets, transactions } };
 };

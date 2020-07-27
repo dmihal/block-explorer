@@ -1000,19 +1000,19 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fuel-js/api@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.0.9.tgz#2860b1a7658050753aa3d6eb0791411a6d8cc8bf"
-  integrity sha512-VG8WAIj4BTkPngzpuz5sLm5ourbPOTx9wNQSuKesseJ9HPpDh8qeRi+YWcaXTBuFldb1TnW0WynWGw0i07uF+w==
+"@fuel-js/api@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.1.1.tgz#f188b8e9d9560676f7ac91c2ec5a77f502068ee8"
+  integrity sha512-eWDt73SNV64ylqV8CwowWwX7mBPt5tTNV/dYCjpbvB7aK25JgM2XcBSPXWALrH0miVmscQ3PQTf4LGiPRUryqw==
   dependencies:
-    "@fuel-js/interface" "^0.0.3"
-    "@fuel-js/protocol" "^0.1.1"
+    "@fuel-js/interface" "^0.0.5"
+    "@fuel-js/protocol" "^0.2.1"
     "@fuel-js/utils" "^0.1.0"
 
-"@fuel-js/interface@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@fuel-js/interface/-/interface-0.0.3.tgz#bd02914351c418ced08908e059d87c4c5467959a"
-  integrity sha512-PHFwVN6aplhGFe/dHLkYqQ7LJ3yX4KyULX6R+OMnX3BDONlzJ94u5vWpEMHWkQWAG0n1bsi1lU6YmOEJebDmAQ==
+"@fuel-js/interface@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@fuel-js/interface/-/interface-0.0.5.tgz#628c0b9300a23d2e504de23ab25c613e936f01cc"
+  integrity sha512-1pmu4dduyr53oN+6e7Af35SmH1iqkDEZQ5uQDpDAlkOqSRwbw6rVvBSROfkgLGSICOkWe7l9PFJT9atRllLwtg==
   dependencies:
     "@fuel-js/key" "^0.1.0"
 
@@ -1024,13 +1024,14 @@
     "@fuel-js/rolled" "^0.1.0"
     "@fuel-js/utils" "^0.1.0"
 
-"@fuel-js/protocol@^0.1.1":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@fuel-js/protocol/-/protocol-0.1.7.tgz#297398dcb20baec01620f1b42a54c0409768ca30"
-  integrity sha512-MiYQK3+7m3X7ohNFEosjWjLTggIozo0atySjLE2/obpLxeaT7SDy9avt7X3ZHI+y8QiX58R4hGmFfZeXiEMTXg==
+"@fuel-js/protocol@^0.2.1":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@fuel-js/protocol/-/protocol-0.2.4.tgz#10c87e36d8743fbd2d92c99c6bf3908e79098b53"
+  integrity sha512-FJzlM2xa32Jf7IVRtUkFXXxPE/cYfmNyC0exZx6/7fZLG6qVE8AB90RJmUmjQWA4YoF64KQGRDuaA5a/BtmekA==
   dependencies:
-    "@fuel-js/struct" "^0.1.1"
-    "@fuel-js/utils" "^0.1.0"
+    "@fuel-js/struct" "^0.1.5"
+    "@fuel-js/utils" "^0.1.1"
+    regenerator-runtime "^0.13.7"
 
 "@fuel-js/rolled@^0.1.0":
   version "0.1.0"
@@ -1039,18 +1040,33 @@
   dependencies:
     "@fuel-js/utils" "^0.1.0"
 
-"@fuel-js/struct@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@fuel-js/struct/-/struct-0.1.1.tgz#ef5cd3456c24c76836c2ef77b7c6af9cb03a3d75"
-  integrity sha512-fkfr2I6BBNvDOHQfGzp0SPvN3yXFW5vyTcEvgYrlBGvAEk+KaRabMTkCzHQa9gThHzbVhBhhifDkMuJuYtHPfA==
+"@fuel-js/rolled@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@fuel-js/rolled/-/rolled-0.1.4.tgz#e5620fb115116763aec6a661e2f598c8bb765df2"
+  integrity sha512-RFjJIJNvbKIlUKA5sc9OvoibU57C9+02BJXph1Cvtn3UoabfGaX7i8lUEPyN46Q0dxv1p2xzTNyK6j4KPgKM8w==
   dependencies:
-    "@fuel-js/rolled" "^0.1.0"
+    "@fuel-js/utils" "^0.1.0"
+
+"@fuel-js/struct@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@fuel-js/struct/-/struct-0.1.5.tgz#338749897750105d8ca62bf7f55f289d0682d6d7"
+  integrity sha512-lBFLql5qF063liNFOFh1mESltMB8EVcWscMX9WAtXpxsCPU+IbKzwLi6SJkQm96SNhCJXtrwMdnvy2Nnoaoq2Q==
+  dependencies:
+    "@fuel-js/rolled" "^0.1.4"
     "@fuel-js/utils" "^0.1.0"
 
 "@fuel-js/utils@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@fuel-js/utils/-/utils-0.1.0.tgz#0affd983612c97a02f0d6874cb7b44d5153886b0"
   integrity sha512-6cQ27SXYhVcwN0qwqZZYQETXxv57Y+6/RI2sGSUxF96ZUlS6PfG2vWV4+DvE6S8VZhUsRTjRGNvxtOJHKRyf5w==
+  dependencies:
+    bn.js "^5.1.1"
+    ethers "^4.0.47"
+
+"@fuel-js/utils@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@fuel-js/utils/-/utils-0.1.1.tgz#e5785053b7bcd8fc4d55299145fa8bd2ec5e67fd"
+  integrity sha512-Tqd57Kkc1vU5mJu7WJoffXMA2jqtBMUOW4G+GiwHEOWvSkMDxOXUyG96yI7DpTF6VKm9MuFZJdmmONj9hLtVCA==
   dependencies:
     bn.js "^5.1.1"
     ethers "^4.0.47"
@@ -4857,6 +4873,11 @@ regenerator-runtime@^0.13.4:
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
   integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
+
+regenerator-runtime@^0.13.7:
+  version "0.13.7"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
+  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
 
 regenerator-transform@^0.14.2:
   version "0.14.4"
