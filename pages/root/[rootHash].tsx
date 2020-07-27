@@ -12,7 +12,7 @@ import { getRoot, Root } from 'data/roots';
 import { getTransaction, Transaction } from 'data/transactions';
 
 interface TableTX {
-  index: string;
+  index: number;
   hash: string;
   timestamp: number;
 }

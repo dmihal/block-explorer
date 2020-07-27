@@ -6,4 +6,5 @@ export interface ColumnType {
   minWidth?: number;
   grow?: number;
   ignore?: string;
+  format?: string;
 }
