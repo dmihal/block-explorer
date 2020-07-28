@@ -5,10 +5,13 @@ import SearchBar from './SearchBar';
 
 interface HeaderProps {
   noSearch?: boolean;
+  active?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ noSearch }) => {
+const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
   const [isOpen, setOpen] = useState(false);
+  const _active = (page: string) => page === active ? 'active' : '';
+
 
   return (
     <header className={isOpen ? 'open' : ''}>
@@ -26,9 +29,11 @@ const Header: React.FC<HeaderProps> = ({ noSearch }) => {
 
       <nav>
         <Link href="/network">
-          <a>Network</a>
+          <a className={_active('network')}>Network</a>
         </Link>
-        <a href="/labs">Labs</a>
+        <Link href="/labs">
+          <a className={_active('labs')}>Labs</a>
+        </Link>
         <a href="/developers">Developers</a>
       </nav>
 
@@ -72,10 +77,13 @@ const Header: React.FC<HeaderProps> = ({ noSearch }) => {
           text-decoration: none;
           line-height: 2.56;
           color: #021d17;
-          padding: 0 15px;
+          margin: 0 15px;
+        }
+        nav a.active {
+          border-bottom: solid 2px black;
         }
         nav a:hover {
-          color: #00c9a1;
+          color: #021d17;
         }
 
         @media (max-width: 800px) {

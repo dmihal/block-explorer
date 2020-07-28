@@ -10,6 +10,7 @@ type Props = {
   breadCrumbs?: BreadCrumb[];
   simple?: boolean;
   noSearch?: boolean;
+  active?: string;
 }
 
 const Layout: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const Layout: React.FC<Props> = ({
   title = 'Fuel Labs',
   simple,
   noSearch,
+  active,
 }) => {
   return (
     <div className="container">
@@ -27,13 +29,14 @@ const Layout: React.FC<Props> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <Header noSearch={noSearch} />
+      <Header noSearch={noSearch} active={active}/>
       {!simple && (
         <Location breadCrumbs={breadCrumbs} />
       )}
 
       <main>{children}</main>
       <footer>
+        ©2020 Fuel Labs inc.
       </footer>
 
       <style jsx>{`
@@ -50,6 +53,14 @@ const Layout: React.FC<Props> = ({
         }
         main {
           flex: 1;
+        }
+        footer {
+          height: 34px;
+          opacity: 0.3;
+          font-size: 14px;
+          color: #69737d;
+          text-align: center;
+          margin: 12px;
         }
       `}</style>
       <style jsx global>{`
