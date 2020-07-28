@@ -1000,26 +1000,26 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fuel-js/api@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.1.1.tgz#f188b8e9d9560676f7ac91c2ec5a77f502068ee8"
-  integrity sha512-eWDt73SNV64ylqV8CwowWwX7mBPt5tTNV/dYCjpbvB7aK25JgM2XcBSPXWALrH0miVmscQ3PQTf4LGiPRUryqw==
+"@fuel-js/api@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.1.2.tgz#16553187ea02b41e475ca5549205921fdb03d19b"
+  integrity sha512-sgxcsO04zWPulSiXHVHTiKubpQ2/s+ZlF4YdarUp6wI1wRLyEW2KVTLe7FDqz+Eac8w4vp0zJPVS6JFWHN2kkQ==
   dependencies:
-    "@fuel-js/interface" "^0.0.5"
+    "@fuel-js/interface" "^0.0.9"
     "@fuel-js/protocol" "^0.2.1"
     "@fuel-js/utils" "^0.1.0"
 
-"@fuel-js/interface@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@fuel-js/interface/-/interface-0.0.5.tgz#628c0b9300a23d2e504de23ab25c613e936f01cc"
-  integrity sha512-1pmu4dduyr53oN+6e7Af35SmH1iqkDEZQ5uQDpDAlkOqSRwbw6rVvBSROfkgLGSICOkWe7l9PFJT9atRllLwtg==
+"@fuel-js/interface@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@fuel-js/interface/-/interface-0.0.9.tgz#078cec3634617ac86f5b9644f65abba150e292de"
+  integrity sha512-fNFhiqpiILZwvOddyIMVIdVKlv/kRmnMeGjf8QXkJrJetCA4zBLgdkQP3MGwKgG2O/M9+TO4eqrYajdzE3qqdA==
   dependencies:
-    "@fuel-js/key" "^0.1.0"
+    "@fuel-js/key" "^0.1.2"
 
-"@fuel-js/key@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@fuel-js/key/-/key-0.1.0.tgz#5dcebdaeec9c4ff403b13ff60e1af25e301e4d1d"
-  integrity sha512-hiEhuLIHIO743pIWwDPWiVeRZCHcfyi4w66sBKqHI1qr8OV+m1Tsg2gxduKbS9v9v+HVSaqdixHnQ+PTUZbwQw==
+"@fuel-js/key@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@fuel-js/key/-/key-0.1.2.tgz#66eec8b91f8767263a54f9c76c9aa91034935faa"
+  integrity sha512-Kbju5QFZPih0CpFiudkJYj7lCy0ta4l+g1RAMbIz/AqUx4Yj/1tsN/4ZBz0OVNAq8gg2iojop2qOhMujm8kNMg==
   dependencies:
     "@fuel-js/rolled" "^0.1.0"
     "@fuel-js/utils" "^0.1.0"
