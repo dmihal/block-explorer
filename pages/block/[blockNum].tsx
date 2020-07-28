@@ -6,7 +6,7 @@ import Layout from 'components/Layout';
 import FuelLink from 'components/FuelLink';
 import SubHeader from 'components/SubHeader';
 import { getBlock, Block } from 'data/blocks';
-import { getRoot, Root } from 'data/roots';
+import { getRoot } from 'data/roots';
 
 interface BlockPageProps {
   block: Block | null;
@@ -96,16 +96,17 @@ export const getServerSideProps: GetServerSideProps = async ({ params, res }) =>
   const block = await getBlock(parseInt(params!.blockNum as string));
 
   const rootSizes: { [hash: string]: number } = {};
-  await Promise.all(block.roots.map(async (rootHash: string) => {
-    const _root = await getRoot(rootHash);
-    rootSizes[rootHash] = _root.transactions.length;
-  }));
 
   if (!block) {
     res.writeHead(302, { Location: '/blocks' });
     res.end();
-    return { props: { block: null, rootSizes: {} } };
+    return { props: { block: null, rootSizes } };
   }
+
+  await Promise.all(block.roots.map(async (rootHash: string) => {
+    const _root = await getRoot(rootHash);
+    rootSizes[rootHash] = _root!.transactions.length;
+  }));
 
   return { props: { block, rootSizes } };
 };
