@@ -28,7 +28,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
   ];
 
   return (
-    <Layout title="Transaction" breadCrumbs={breadCrumbs}>
+    <Layout title="Transaction" breadCrumbs={breadCrumbs} active="network">
       <SubHeader type="Transaction">{transaction.hash}</SubHeader>
 
       <div className="columns">

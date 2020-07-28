@@ -9,7 +9,7 @@ interface AccountsPageProps {
 
 const AccountsPage: NextPage<AccountsPageProps> = ({ addresses }) => {
   return (
-    <Layout title="Accounts">
+    <Layout title="Accounts" active="network">
       <h1>Accounts</h1>
       <ul>
         {addresses.map((address: Address) => (

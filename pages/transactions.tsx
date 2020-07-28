@@ -9,7 +9,7 @@ interface IndexPageProps {
 
 const TransactionsPage: NextPage<IndexPageProps> = ({ transactions }) => {
   return (
-    <Layout title="Transactions">
+    <Layout title="Transactions" active="network">
       <h1>Transactions</h1>
       <ul>
         {transactions.map((transaction) => (

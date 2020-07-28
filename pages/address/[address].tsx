@@ -31,7 +31,7 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
   }
 
   return (
-    <Layout title="Address">
+    <Layout title="Address" active="network">
       <div className="balances">
         <h3>Balances</h3>
         <ul className="balance-list">

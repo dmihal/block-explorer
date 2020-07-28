@@ -10,7 +10,7 @@ interface BlocksPageProps {
 
 const BlocksPage: NextPage<BlocksPageProps> = ({ blocks }) => {
   return (
-    <Layout title="Blocks">
+    <Layout title="Blocks" active="network">
       <SubHeader type="Blocks" />
       <ul>
         {blocks.map((block: Block) => (

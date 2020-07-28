@@ -36,7 +36,7 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
   ];
 
   return (
-    <Layout title="Roots" breadCrumbs={breadCrumbs}>
+    <Layout title="Root" breadCrumbs={breadCrumbs} active="network">
       <SubHeader type="Root">{_root.hash}</SubHeader>
 
       <Attributes>

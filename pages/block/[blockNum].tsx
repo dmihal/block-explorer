@@ -23,7 +23,7 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
   ];
 
   return (
-    <Layout title="Blocks" breadCrumbs={breadCrumbs}>
+    <Layout title="Block" breadCrumbs={breadCrumbs} active="network">
       <SubHeader type="Block" inline>#{block.height}</SubHeader>
 
       <Attributes>

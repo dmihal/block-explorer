@@ -9,7 +9,7 @@ interface RootsPageProps {
 
 const RootsPage: NextPage<RootsPageProps> = ({ roots }) => {
   return (
-    <Layout title="roots">
+    <Layout title="Roots" active="network">
       <h1>Roots</h1>
       <ul>
         {roots.map((_root: Root) => (
