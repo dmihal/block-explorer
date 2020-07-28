@@ -1,6 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
+import SocialBox from 'components/SocialBox';
 import science from 'assets/science.svg';
 import worker from 'assets/worker.svg';
 import bolt from 'assets/mini-bolt.svg';
@@ -109,6 +110,8 @@ const IndexPage: NextPage = () => {
       </div>
 
       <TeamBox />
+
+      <SocialBox />
 
       <style jsx>{`
         .two-col {
