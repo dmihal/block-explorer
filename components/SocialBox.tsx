@@ -28,7 +28,7 @@ const Socialbox: React.FC = () => {
           Github
         </a>
         <a
-          href="#"
+          href="https://discord.gg/kWscHS"
           className="social"
           target="social"
           style={{ backgroundImage: `url('${discord}')` }}

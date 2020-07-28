@@ -113,6 +113,10 @@ const IndexPage: NextPage = () => {
 
       <SocialBox />
 
+      <footer>
+        ©2020 Fuel Labs inc.
+      </footer>
+
       <style jsx>{`
         .two-col {
           display: flex;
@@ -142,6 +146,15 @@ const IndexPage: NextPage = () => {
           font-size: 16px;
           font-weight: 500;
           line-height: 2.13;
+        }
+
+        footer {
+          height: 34px;
+          opacity: 0.3;
+          font-size: 14px;
+          color: #69737d;
+          text-align: center;
+          margin: 12px;
         }
 
         @media (max-width: 600px) {

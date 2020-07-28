@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Header from './Header';
 import Location from './Location';
 import { BreadCrumb } from './BreadCrumbs';
-import SFPro from './SFPro';
 
 type Props = {
   title?: string;
@@ -35,14 +34,11 @@ const Layout: React.FC<Props> = ({
       )}
 
       <main>{children}</main>
-      <footer>
-        ©2020 Fuel Labs inc.
-      </footer>
 
       <style jsx>{`
         .container {
           max-width: 1080px;
-          font-family: 'SF Text', sans-serif;
+          font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
           display: flex;
           flex-direction: column;
           min-height: 100%;
@@ -53,14 +49,6 @@ const Layout: React.FC<Props> = ({
         }
         main {
           flex: 1;
-        }
-        footer {
-          height: 34px;
-          opacity: 0.3;
-          font-size: 14px;
-          color: #69737d;
-          text-align: center;
-          margin: 12px;
         }
       `}</style>
       <style jsx global>{`
@@ -77,7 +65,6 @@ const Layout: React.FC<Props> = ({
           color: #03a383;
         }
       `}</style>
-      <SFPro />
     </div>
   );
 };
