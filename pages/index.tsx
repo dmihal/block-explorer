@@ -22,6 +22,7 @@ const IndexPage: NextPage = () => {
       <style jsx>{`
         .two-col {
           display: flex;
+          margin-top: 45px;
         }
 
         .graphic {
@@ -48,6 +49,7 @@ const IndexPage: NextPage = () => {
           font-size: 16px;
           font-weight: 500;
           line-height: 2.13;
+          margin: 30px 0;
         }
 
         .cta {
@@ -57,9 +59,12 @@ const IndexPage: NextPage = () => {
           border: none;
           color: #ffffff;
           font-size: 21px;
-          font-weight: 600;
+          font-weight: 500;
           padding: 0 64px;
           outline: none;
+        }
+        .cta:hover {
+          background-color: #029A78;
         }
 
         @media (max-width: 600px) {
