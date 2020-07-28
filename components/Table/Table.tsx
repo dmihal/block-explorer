@@ -58,9 +58,6 @@ const Table: React.FC<TableProps> = ({ columns, data, children, onScrollBottom, 
           justify-content: space-between;
           font-size: 1rem;
           line-height: 1.5;
-
-          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-          background-color: #ffffff;
           font-size: 15px;
         }
 

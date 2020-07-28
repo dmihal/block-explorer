@@ -53,41 +53,27 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
           <AssetAmount amount={_root.fee} asset={_root.feeToken} assets={assets} noChip />
         </Attribute>
         <Attribute attribute="Transactions">
-          {_root.transactions.map((tx: string) => (
-            <div key={tx} className="tx">
-              <FuelLink type="transaction">{tx}</FuelLink>
-            </div>
-          ))}
-
-          <Table
-            columns={[
-              { name: 'index', title: 'Index', type: 'text', minWidth: 40, grow: 0 },
-              { name: 'hash', title: 'Transaction', type: 'link', linkType: 'transaction', minWidth: 50 },
-              { name: 'timestamp', title: 'Created (UTC)', type: 'date', format: 'yyyy-MM-dd HH:mm' },
-            ]}
-            data={transactions}
-            assets={assets}
-          >
-            <div className="empty">This address has not competed a transaction</div>
-          </Table>
+          <div className="table-container">
+            <Table
+              columns={[
+                { name: 'index', title: 'Index', type: 'text', minWidth: 40, grow: 0 },
+                { name: 'hash', title: 'Transaction', type: 'link', linkType: 'transaction', minWidth: 50 },
+                { name: 'timestamp', title: 'Created (UTC)', type: 'date', format: 'yyyy-MM-dd HH:mm' },
+              ]}
+              data={transactions}
+              assets={assets}
+            >
+              <div className="empty">This address has not competed a transaction</div>
+            </Table>
+          </div>
         </Attribute>
       </Attributes>
 
       <style jsx>{`
-        .tx {
-          overflow: hidden;
-          margin-bottom: 50px;
-        }
-        .tx :global(a) {
-          overflow: hidden;
-          display: block;
-          text-overflow: ellipsis;
-        }
-
-        @media (max-width: 600px) {
-          .tx {
-            margin-bottom: 0;
-          }
+        .table-container {
+          border-radius: 10px;
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+          margin: 10px;
         }
       `}</style>
     </Layout>
