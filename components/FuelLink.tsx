@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
+import Hex from './Hex';
 
 export type FuelLinkTypes = 'block' | 'root' | 'transaction' | 'address';
 
@@ -10,6 +11,8 @@ interface FuelLinkProps {
 }
 
 const FuelLink: React.FC<FuelLinkProps> = ({ type, label, title, children }) => {
+  const content = label || <Hex>{children}</Hex>;
+
   switch (type) {
     case 'block':
       return (
@@ -21,21 +24,21 @@ const FuelLink: React.FC<FuelLinkProps> = ({ type, label, title, children }) => 
     case 'root':
       return (
         <Link href="/root/[rootHash]" as={`/root/${children}`}>
-          <a>{title && 'Root '}{label || children}</a>
+          <a>{title && 'Root '}{content}</a>
         </Link>
       );
 
     case 'transaction':
       return (
         <Link href="/transaction/[txHash]" as={`/transaction/${children}`}>
-          <a>{title && 'Transaction '}{label || children}</a>
+          <a>{title && 'Transaction '}{content}</a>
         </Link>
       );
 
     case 'address':
       return (
         <Link href="/address/[address]" as={`/address/${children}`}>
-          <a>{title && 'Address '}{label || children}</a>
+          <a>{title && 'Address '}{content}</a>
         </Link>
       );
   }
