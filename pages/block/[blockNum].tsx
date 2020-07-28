@@ -6,12 +6,14 @@ import Layout from 'components/Layout';
 import FuelLink from 'components/FuelLink';
 import SubHeader from 'components/SubHeader';
 import { getBlock, Block } from 'data/blocks';
+import { getRoot, Root } from 'data/roots';
 
 interface BlockPageProps {
   block: Block | null;
+  rootSizes: { [hash: string]: number };
 }
 
-const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
+const BlockPage: NextPage<BlockPageProps> = ({ block, rootSizes }) => {
   if (!block) {
     Router.push('/blocks');
     return null;
@@ -47,6 +49,9 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
           {block.roots.map((_root: string) => (
             <div key={_root} className="root">
               <FuelLink type="root">{_root}</FuelLink>
+              {rootSizes[_root] && (
+                <div className="rootSize">{rootSizes[_root]} Transaction{rootSizes[_root] > 1 && 's'}</div>
+              )}
             </div>
           ))}
         </Attribute>
@@ -61,6 +66,18 @@ const BlockPage: NextPage<BlockPageProps> = ({ block }) => {
           overflow: hidden;
           display: block;
           text-overflow: ellipsis;
+        }
+
+        .rootSize {
+          border-radius: 3px;
+          border: solid 0.5px #69737d;
+          padding: 3px 14px;
+          font-size: 13px;
+          font-weight: 500;
+          font-style: italic;
+          color: #69737d;
+          display: inline-block;
+          margin: 2px;
         }
 
         @media (max-width: 600px) {
@@ -78,11 +95,17 @@ export default BlockPage;
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const block = await getBlock(parseInt(params!.blockNum as string));
 
+  const rootSizes: { [hash: string]: number } = {};
+  await Promise.all(block.roots.map(async (rootHash: string) => {
+    const _root = await getRoot(rootHash);
+    rootSizes[rootHash] = _root.transactions.length;
+  }));
+
   if (!block) {
     res.writeHead(302, { Location: '/blocks' });
     res.end();
-    return { props: { block: null } };
+    return { props: { block: null, rootSizes: {} } };
   }
 
-  return { props: { block } };
+  return { props: { block, rootSizes } };
 };

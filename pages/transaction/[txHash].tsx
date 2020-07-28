@@ -67,7 +67,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         <Attribute attribute="Fee">
           <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} noChip />
         </Attribute>
-        <Attribute attribute="Data size">{transaction.size}</Attribute>
+        <Attribute attribute="Data size">{transaction.size} Bytes</Attribute>
       </Attributes>
 
       <style jsx>{`
