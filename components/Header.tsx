@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link'
 import logo from 'assets/bolt.svg';
+import github from 'assets/github-dark.svg';
+import discord from 'assets/discord-bubble.svg';
 import SearchBar from './SearchBar';
 
 interface HeaderProps {
@@ -34,7 +36,12 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
         <Link href="/labs">
           <a className={_active('labs')}>Labs</a>
         </Link>
-        <a href="/developers">Developers</a>
+        <a href="/docs">Docs</a>
+
+        <div className="seperator" />
+
+        <a className="social" style={{ backgroundImage: `url('${github}')` }} href="#">Github</a>
+        <a className="social" style={{ backgroundImage: `url('${discord}')` }} href="#">Discord</a>
       </nav>
 
       <style jsx>{`
@@ -72,6 +79,8 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
 
         nav {
           margin-left: 8px;
+          display: flex;
+          align-items: center;
         }
         nav a {
           text-decoration: none;
@@ -85,6 +94,25 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
         }
         nav a:hover {
           color: #021d17;
+        }
+
+        .seperator {
+          border-left: solid 1px #a6b3bc;
+          height: 60%;
+        }
+
+        nav a.social {
+          height: 24px;
+          width: 24px;
+          overflow: hidden;
+          color: transparent;
+          display: block;
+          background-size: contain;
+          opacity: 0.65;
+          margin: 0 15px;
+        }
+        nav a.social:hover {
+          opacity: 1;
         }
 
         @media (max-width: 800px) {
