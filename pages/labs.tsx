@@ -1,7 +1,83 @@
+import React from 'react';
 import { NextPage } from 'next';
 import Layout from '../components/Layout';
 import science from 'assets/science.svg';
 import worker from 'assets/worker.svg';
+import bolt from 'assets/mini-bolt.svg';
+import nick from 'assets/nick.png';
+import john from 'assets/john.png';
+
+const Bubble: React.FC<any> = ({ name, title, img }) => (
+  <div className="bubble">
+    <div className="img" style={{ backgroundImage: `url('${img}')` }} />
+    <div className="name">{name}</div>
+    <div className="title">{title}</div>
+
+    <style jsx>{`
+      .bubble {
+        text-align: center;
+      }
+      .img {
+        height: 110px;
+        width: 110px;
+        background-size: contain;
+        margin: 0 auto;
+      }
+
+      .name {
+        font-size: 17px;
+        font-weight: 600;
+        margin: 24px 0 20px;
+      }
+      .title {
+        font-size: 14px;
+      }
+    `}</style>
+  </div>
+);
+
+const TeamBox: React.FC = () => {
+  return (
+    <div className="box-container">
+      <div className="box-content">
+        <h2>The Team</h2>
+        <div className="bubbles">
+          <Bubble name="Nick Dodson" title="C.E.O." img={nick} />
+          <Bubble name="John Adler" title="V.P Blockchain" img={john} />
+          <Bubble name="Samuel Borin" title="Design & Product" img={nick} />
+          <Bubble name="Dave Mihal" title="Sr. Engineer" img={john} />
+        </div>
+      </div>
+
+      <style jsx>{`
+        .box-container {
+          margin: 0 -1000px;
+          background: #021d17;
+          background-image: url('${bolt}');
+        }
+
+        .box-content {
+          color: white;
+          margin: 0 auto;
+          padding: 30px 0;
+          max-width: 700px;
+          text-align: center;
+        }
+
+        .bubbles {
+          display: flex;
+          justify-content: space-around;
+        }
+
+        @media (max-width: 600px) {
+          .bubbles {
+            flex-direction: column;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 const IndexPage: NextPage = () => {
   return (
@@ -31,6 +107,8 @@ const IndexPage: NextPage = () => {
           </p>
         </div>
       </div>
+
+      <TeamBox />
 
       <style jsx>{`
         .two-col {

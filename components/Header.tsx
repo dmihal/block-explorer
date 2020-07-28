@@ -76,10 +76,11 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
         nav a {
           text-decoration: none;
           line-height: 2.56;
-          color: #021d17;
+          color: #69737d;
           margin: 0 15px;
         }
         nav a.active {
+          color: #021d17;
           border-bottom: solid 2px black;
         }
         nav a:hover {
