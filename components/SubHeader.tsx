@@ -106,6 +106,7 @@ const SubHeader: React.FC<SubHeaderProps> = ({ type, inline, children, qr, copy 
           padding: 4px;
           border-radius: 4px;
           opacity: 0.17;
+          color: #13d0b0;
         }
 
         .qrContainer {
