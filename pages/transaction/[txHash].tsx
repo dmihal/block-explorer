@@ -108,13 +108,13 @@ export default TransactionPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const transaction = await getTransaction(params!.txHash as string);
-  const assets = await getAssets();
 
   if (!transaction) {
     res.writeHead(301, { Location: '/transactions' });
     res.end();
-    return { props: { transaction: null, assets } };
+    return { props: { transaction: null, assets: [] } };
   }
+  const assets = await getAssets(transaction.assets);
 
   return { props: { transaction, assets } };
 };

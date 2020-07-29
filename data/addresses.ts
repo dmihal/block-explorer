@@ -4,6 +4,7 @@ export interface Address {
   address: string;
   balances: { [assetAddress: string]: string };
   transactions: string[];
+  assets: string[];
 }
 
 export async function getAddresses(): Promise<Address[]> {
@@ -19,9 +20,12 @@ export async function getAddress(address: string): Promise<Address | null> {
     .filter((input: any) => input.properties.transactionHashId)
     .map((input: any) => input.properties.transactionHashId().get());
 
+  const assets = new Set(inputs.map((input: any) => input.properties.token().hex()));
+
   return {
     address,
     balances: {},
     transactions,
+    assets: Array.from(assets),
   };
 }

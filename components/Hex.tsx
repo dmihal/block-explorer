@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hex: React.FC = ({ children, style }) => {
+const Hex: React.FC<any> = ({ children, style }) => {
   const text = children!.toString();
   return (
     <div className="hex" style={style}>

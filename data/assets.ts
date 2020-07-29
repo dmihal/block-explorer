@@ -32,6 +32,7 @@ export function formatValue(value: string, assetAddress: string) {
 }
 
 export async function getAsset(addressOrId: string): Promise<Asset> {
+  console.log(addressOrId);
   const address = addressOrId.length === 42
     ? addressOrId.toLowerCase()
     : (await api.getToken(addressOrId)).toLowerCase();
@@ -40,7 +41,7 @@ export async function getAsset(addressOrId: string): Promise<Asset> {
     : addressOrId;
 
   if (assets[address]) {
-    return assets;
+    return assets[address];
   }
 
   const metadata = await getTokenMetadata(address);

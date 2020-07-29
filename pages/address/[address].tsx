@@ -158,13 +158,14 @@ const _getTransaction = async (hash: string) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const address = await getAddress(params!.address as string);
-  const assets = await getAssets();
 
   if (!address) {
     res.writeHead(302, { Location: '/accounts' });
     res.end();
-    return { props: { address: null, assets, transactions: [] } };
+    return { props: { address: null, assets: [], transactions: [] } };
   }
+
+  const assets = await getAssets(address.assets);
 
   const transactions = await Promise.all(address.transactions.map(
     (txHash: string) => _getTransaction(txHash).then(txToTableTX)

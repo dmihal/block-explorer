@@ -17,11 +17,16 @@ export interface Transaction {
   fee: string;
   size: number;
   timestamp: number;
+  assets: string[];
 }
 
 async function transformTx(fuelTx: any, hash: string): Promise<Transaction> {
   const block = await getBlock(parseInt(fuelTx.blockHeight));
   const rootHash = block ? block.roots[parseInt(fuelTx.rootIndex)] : null;
+
+  const assets = new Set([fuelTx.signatureFeeToken]);
+  fuelTx.inputProofs.forEach((input: any) => assets.add(input.properties.token().hex()));
+  fuelTx.outputProofs.forEach((output: any) => assets.add(output.properties.token().hex()));
 
   const tx: Transaction = {
     hash,
@@ -41,6 +46,7 @@ async function transformTx(fuelTx: any, hash: string): Promise<Transaction> {
     fee: fuelTx.signatureFee,
     size: fuelTx.decoded.sizePacked(),
     timestamp: parseInt(fuelTx.timestamp),
+    assets: Array.from(assets),
   };
   return tx;
 }

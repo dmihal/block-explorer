@@ -4,7 +4,7 @@ export interface TokenMetadata {
   decimals: number;
 }
 
-export async function getTokenMetadata(address): Promise<TokenMetadata> {
+export async function getTokenMetadata(_address: string): Promise<TokenMetadata> {
   if (process.env.NETWORK === '0') {
     return generateFakeToken();
   }

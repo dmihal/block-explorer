@@ -32,5 +32,6 @@ declare module '@fuel-js/api' {
     getTransactions(blockHeight: number, rootIndex: number): Promise<any>;
     getTransactionByHash(hash: string): Promise<any>;
     getInputByHash(type: string, isWithdraw: string, hash: string): Promise<Struct>;
+    getTokenId(id: string): Promise<string>;
   }
 }

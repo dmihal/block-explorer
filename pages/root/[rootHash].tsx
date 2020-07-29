@@ -9,7 +9,6 @@ import SubHeader from 'components/SubHeader';
 import Table from 'components/Table';
 import { getAssets, Asset } from 'data/assets';
 import { getRoot, Root } from 'data/roots';
-import { getTransaction, Transaction } from 'data/transactions';
 
 interface TableTX {
   index: number;
