@@ -33,15 +33,12 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
         <Link href="/network">
           <a className={_active('network')}>Network</a>
         </Link>
-        <Link href="/labs">
-          <a className={_active('labs')}>Labs</a>
-        </Link>
         <a href="/docs">Docs</a>
 
         <div className="seperator" />
 
-        <a className="social" style={{ backgroundImage: `url('${github}')` }} href="#">Github</a>
-        <a className="social" style={{ backgroundImage: `url('${discord}')` }} href="#">Discord</a>
+        <a className="social" style={{ backgroundImage: `url('${github}')` }} href="https://github.com/fuellabs">Github</a>
+        <a className="social" style={{ backgroundImage: `url('${discord}')` }} href="https://discord.gg/kWscHS">Discord</a>
       </nav>
 
       <style jsx>{`
