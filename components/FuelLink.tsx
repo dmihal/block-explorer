@@ -11,7 +11,7 @@ interface FuelLinkProps {
 }
 
 const FuelLink: React.FC<FuelLinkProps> = ({ type, label, title, children }) => {
-  const content = label || <Hex>{children}</Hex>;
+  const content = label || <Hex style={{ marginLeft: `${title ? 4 : 0}px` }}>{children}</Hex>;
 
   switch (type) {
     case 'block':

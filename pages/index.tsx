@@ -62,6 +62,7 @@ const IndexPage: NextPage = () => {
           font-weight: 500;
           padding: 0 64px;
           outline: none;
+          cursor: pointer;
         }
         .cta:hover {
           background-color: #029A78;

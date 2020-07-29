@@ -61,6 +61,7 @@ const BreadCrumbs: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) =
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          display: flex;
         }
 
         .breadCrumbs li :global(a) {
@@ -72,6 +73,10 @@ const BreadCrumbs: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) =
           content: '/';
           display: inline-block;
           margin: 0 10px;
+        }
+
+        .breadCrumbs :global(a) {
+          display: flex;
         }
       `}</style>
     </ul>

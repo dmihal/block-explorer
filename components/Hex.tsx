@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Hex: React.FC = ({ children }) => {
+const Hex: React.FC = ({ children, style }) => {
   const text = children!.toString();
   return (
-    <div className="hex">
+    <div className="hex" style={style}>
       <span className="first">{text.substring(0, text.length - 6)}</span>
       <span className="last">{text.substring(text.length - 6)}</span>
 
