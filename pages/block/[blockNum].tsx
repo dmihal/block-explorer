@@ -20,7 +20,7 @@ const BlockPage: NextPage<BlockPageProps> = ({ block, rootSizes }) => {
   }
 
   const breadCrumbs = [
-    { name: 'Network', page: '/' },
+    { name: 'Network', page: '/network' },
     'Block',
   ];
 

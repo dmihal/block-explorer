@@ -21,7 +21,7 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
   }
 
   const breadCrumbs = [
-    { name: 'Network', page: '/' },
+    { name: 'Network', page: '/network' },
     { type: 'block' as 'block', value: transaction.block },
     { type: 'root' as 'root', value: transaction.root },
     'Transaction',

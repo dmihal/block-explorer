@@ -30,7 +30,7 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
   }
 
   const breadCrumbs = [
-    { name: 'Network', page: '/' },
+    { name: 'Network', page: '/network' },
     { type: 'block' as 'block', value: _root.block },
     'Root',
   ];

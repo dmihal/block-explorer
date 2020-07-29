@@ -30,8 +30,13 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
     return null;
   }
 
+  const breadCrumbs = [
+    { name: 'Network', page: '/network' },
+    'Account',
+  ];
+
   return (
-    <Layout title="Address" active="network">
+    <Layout title="Address" breadCrumbs={breadCrumbs} active="network">
       <div className="balances">
         <h3>Balances</h3>
         <ul className="balance-list">
