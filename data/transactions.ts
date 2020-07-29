@@ -35,7 +35,7 @@ async function transformTx(fuelTx: any, hash: string): Promise<Transaction> {
     inputs: fuelTx.inputProofs.map((input: any) => ({
       account: input.properties.owner().get(),
       asset: input.properties.token().hex(),
-      value: input.properties.value().get().toString(),
+      value: (input.properties.value ? input.properties.value() : input.properties.amount()).get().toString(),
     })),
     outputs: fuelTx.outputProofs.map((output: any) => ({
       account: output.properties.owner().get(),

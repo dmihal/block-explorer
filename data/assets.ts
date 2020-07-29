@@ -32,7 +32,6 @@ export function formatValue(value: string, assetAddress: string) {
 }
 
 export async function getAsset(addressOrId: string): Promise<Asset> {
-  console.log(addressOrId);
   const address = addressOrId.length === 42
     ? addressOrId.toLowerCase()
     : (await api.getToken(addressOrId)).toLowerCase();
