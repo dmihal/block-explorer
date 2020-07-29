@@ -23,7 +23,7 @@ interface RootPageProps {
   assets: Asset[];
 }
 
-const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
+const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
   if (!_root) {
     Router.push('/roots');
     return null;
@@ -58,12 +58,11 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
               columns={[
                 { name: 'index', title: 'Index', type: 'text', minWidth: 40, grow: 0 },
                 { name: 'hash', title: 'Transaction', type: 'link', linkType: 'transaction', minWidth: 50 },
-                { name: 'timestamp', title: 'Created (UTC)', type: 'date', format: 'yyyy-MM-dd HH:mm' },
               ]}
-              data={transactions}
+              data={_root.transactions.map((hash: string, index: number) => ({ hash, index }))}
               assets={assets}
             >
-              <div className="empty">This address has not competed a transaction</div>
+              <div className="empty">No transactions in this root</div>
             </Table>
           </div>
         </Attribute>
@@ -82,34 +81,16 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets, transactions }) => {
 
 export default RootPage;
 
-const txToTableTX = (tx: Transaction, index: number): TableTX => {
-  return {
-    index,
-    hash: tx.hash,
-    timestamp: Date.now(), // TODO: real date
-  };
-}
-
-const _getTransaction = async (hash: string, index: number) => {
-  const tx = await getTransaction(hash);
-  if (!tx) {
-    throw new Error(`Couldn't find tx ${hash}`);
-  }
-  return txToTableTX(tx, index);
-}
-
 export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const _root = await getRoot(params!.rootHash as string);
 
   if (!_root) {
     res.writeHead(301, { Location: '/roots' });
     res.end();
-    return { props: { _root: null, assets: [], transactions: [] } };
+    return { props: { _root: null, assets: [] } };
   }
 
   const assets = await getAssets([_root.feeToken]);
 
-  const transactions = await Promise.all(_root.transactions.map(_getTransaction));
-
-  return { props: { _root, assets, transactions } };
+  return { props: { _root, assets } };
 };

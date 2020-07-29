@@ -49,9 +49,7 @@ const BlockPage: NextPage<BlockPageProps> = ({ block, rootSizes }) => {
           {block.roots.map((_root: string) => (
             <div key={_root} className="root">
               <FuelLink type="root">{_root}</FuelLink>
-              {rootSizes[_root] && (
-                <div className="rootSize">{rootSizes[_root]} Transaction{rootSizes[_root] > 1 && 's'}</div>
-              )}
+              <div className="rootSize">{rootSizes[_root]} Transaction{rootSizes[_root] !== 1 && 's'}</div>
             </div>
           ))}
         </Attribute>

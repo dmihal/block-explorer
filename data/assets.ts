@@ -1,12 +1,13 @@
 import api from './api';
 import { fromWei } from 'ethjs-unit';
+import { getTokenMetadata } from './ethereum';
 
 export interface Asset {
   address: string;
   name: string;
   symbol: string;
   decimals: number;
-  id?: string;
+  id: string;
 }
 
 export const assets: { [address: string]: Asset } = {
@@ -15,25 +16,9 @@ export const assets: { [address: string]: Asset } = {
     name: 'Ether',
     symbol: 'ETH',
     decimals: 18,
-  },
-  '0x6b175474e89094c44da98b954eedeac495271d0f': {
-    address: '0x6b175474e89094c44da98b954eedeac495271d0f',
-    name: 'Dai',
-    symbol: 'DAI',
-    decimals: 18,
-  },
-  '0xfed4976b61517a687d866ef4357a67bb89474002': {
-    address: '0xfed4976b61517a687d866ef4357a67bb89474002',
-    name: 'FakeDAI',
-    symbol: 'FDAI',
-    decimals: 18,
-    id: '0x01',
+    id: '0x00',
   },
 };
-
-export function getAssetName(address: string) {
-  return assets[address] ? assets[address].name : address;
-}
 
 const units: { [decimals: number]: string } = {
   0: 'wei',
@@ -47,14 +32,27 @@ export function formatValue(value: string, assetAddress: string) {
 }
 
 export async function getAsset(addressOrId: string): Promise<Asset> {
-  const token = await api.getToken(addressOrId);
-  return assets[token];
-}
+  const address = addressOrId.length === 42
+    ? addressOrId.toLowerCase()
+    : (await api.getToken(addressOrId)).toLowerCase();
+  const id = addressOrId.length === 42
+    ? await api.getTokenId(addressOrId)
+    : addressOrId;
 
-export async function getAssets(addresses?: string[]) {
-  if (!addresses) {
-    return Object.values(assets);
+  if (assets[address]) {
+    return assets;
   }
 
+  const metadata = await getTokenMetadata(address);
+  assets[address] = {
+    ...metadata,
+    address,
+    id,
+  };
+
+  return assets[address];
+}
+
+export async function getAssets(addresses: string[]) {
   return Promise.all(addresses.map((address: string) => getAsset(address)));
 }
