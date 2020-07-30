@@ -30,10 +30,10 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
       <div onClick={() => setOpen(!isOpen)} className="menu-btn"><div /></div>
 
       <nav>
-        <Link href="/network">
+        <Link href="https://rinkeby.fuel.sh/network">
           <a className={_active('network')}>Network</a>
         </Link>
-        <a href="/docs">Docs</a>
+        <a href="https://docs.fuel.sh">Docs</a>
 
         <div className="seperator" />
 
@@ -127,8 +127,8 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
             width: 22px;
           }
 
-          .menu-btn:after, 
-          .menu-btn:before, 
+          .menu-btn:after,
+          .menu-btn:before,
           .menu-btn div {
             background-color: #021d17;
             content: '';

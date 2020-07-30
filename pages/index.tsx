@@ -15,7 +15,7 @@ const IndexPage: NextPage = () => {
             {} ERC-20 transfers and swaps using the world’s most efficient Optimistic Rollup.
           </p>
 
-          <button className="cta">Get Started</button>
+          <a href="https://docs.fuel.sh"><button className="cta">Get Started</button></a>
         </div>
       </div>
 
