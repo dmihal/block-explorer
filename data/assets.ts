@@ -35,6 +35,7 @@ export async function getAsset(addressOrId: string): Promise<Asset> {
   const address = addressOrId.length === 42
     ? addressOrId.toLowerCase()
     : (await getAPI().getToken(addressOrId)).toLowerCase();
+
   const id = addressOrId.length === 42
     ? await getAPI().getTokenId(addressOrId)
     : addressOrId;

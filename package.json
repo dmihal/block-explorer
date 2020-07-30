@@ -5,8 +5,9 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "deploy": "now && npm run alias",
-    "alias": "now alias https://block-explorer.fuellabs.vercel.app rinkeby.fuel.sh",
+    "deploy": "npm run deploy-rinkeby && npm run deploy-unspecified",
+    "deploy-rinkeby": "now -e network=rinkeby && now alias https://block-explorer.fuellabs.vercel.app rinkeby.fuel.sh",
+    "deploy-unspecified": "now -e network=rinkeby && now alias https://block-explorers.fuellabs.vercel.app unspecified.fuel.sh",
     "type-check": "tsc"
   },
   "dependencies": {

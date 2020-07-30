@@ -9,8 +9,10 @@ export interface TokenMetadata {
 export async function getTokenMetadata(_address: string): Promise<TokenMetadata> {
   if (getNetwork() === 'unspecified') {
     return generateFakeToken();
+  } else {
+    return generateFakeToken();
   }
-  throw new Error(`Unsupported network ${getNetwork()}`);
+  // throw new Error(`Unsupported network ${getNetwork()}`);
 }
 
 function generateFakeToken(): TokenMetadata {
