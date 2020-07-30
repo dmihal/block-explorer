@@ -5,6 +5,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "deploy": "now && npm run alias",
+    "alias": "now alias https://block-explorer.fuellabs.vercel.app rinkeby.fuel.sh",
     "type-check": "tsc"
   },
   "dependencies": {
