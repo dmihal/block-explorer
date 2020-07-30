@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ noSearch, active }) => {
         <div className="seperator" />
 
         <a className="social" style={{ backgroundImage: `url('${github}')` }} href="https://github.com/fuellabs">Github</a>
-        <a className="social" style={{ backgroundImage: `url('${discord}')` }} href="https://discord.gg/kWscHS">Discord</a>
+        <a className="social" style={{ backgroundImage: `url('${discord}')` }} href="https://discord.gg/xfpK4Pe">Discord</a>
       </nav>
 
       <style jsx>{`

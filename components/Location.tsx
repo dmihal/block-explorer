@@ -9,7 +9,7 @@ const Location: React.FC<{ breadCrumbs: BreadCrumb[] }> = ({ breadCrumbs }) => {
       <BreadCrumbs breadCrumbs={breadCrumbs} />
 
       <div className={`network-container ${networkOpen ? 'open' : ''}`}>
-        <div className="network-selector" onClick={() => setNetworkOpen(!networkOpen)}>Mainnet</div>
+        <div className="network-selector" onClick={() => setNetworkOpen(/*!networkOpen*/false)}>Rinkeby</div>
         {networkOpen && (
           <ul className="network-dropdown">
             <li>Mainnet</li>
