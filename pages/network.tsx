@@ -66,6 +66,10 @@ const NetworkPage: NextPage<NetworkPageProps> = ({ blockNum, numTx }) => {
           margin: 0 20px;
         }
 
+        .search-container {
+          margin-top: 30px;
+        }
+
         dl {
           font-size: 20px;
           display: flex;
@@ -76,12 +80,18 @@ const NetworkPage: NextPage<NetworkPageProps> = ({ blockNum, numTx }) => {
         }
 
         dl div {
-          flex: 1 1 auto;
+          flex: 1 1 0;
           background-size: 0;
+          position: relative;
         }
 
-        dl div + div {
+        dl div + div:before {
+          content: '';
+          display: block;
+          top: 25%;
+          bottom: 25%;
           border-left: solid 1px #d5dee5;
+          position: absolute;
         }
 
         dt {

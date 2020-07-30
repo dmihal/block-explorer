@@ -119,7 +119,7 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
         }
 
         .empty-balance {
-          color: #26282a;
+          color: #bebebf;
           text-align: center;
           flex: 1;
           padding-top: 50px;
@@ -130,7 +130,7 @@ const AddressPage: NextPage<AddressPageProps> = ({ address, assets, transactions
         }
 
         .empty {
-          color: #26282a;
+          color: #bebebf;
         }
       `}</style>
     </Layout>

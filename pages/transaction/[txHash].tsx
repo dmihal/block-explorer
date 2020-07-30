@@ -61,15 +61,19 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
         </Attributes>
       </div>
 
-      <Attributes>
-        <Attribute attribute="Fee Token">
-          <AssetChip address={transaction.feeToken} assets={assets} />
-        </Attribute>
-        <Attribute attribute="Fee">
-          <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} noChip />
-        </Attribute>
-        <Attribute attribute="Data size">{transaction.size} Bytes</Attribute>
-      </Attributes>
+      <div className="columns">
+        <Attributes>
+          <Attribute attribute="Fee Token">
+            <AssetChip address={transaction.feeToken} assets={assets} />
+          </Attribute>
+          <Attribute attribute="Fee">
+            <AssetAmount amount={transaction.fee} asset={transaction.feeToken} assets={assets} noChip />
+          </Attribute>
+          <Attribute attribute="Data size">{transaction.size} Bytes</Attribute>
+        </Attributes>
+
+        <Attributes />
+      </div>
 
       <style jsx>{`
         .columns {
