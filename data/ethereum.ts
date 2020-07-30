@@ -1,3 +1,5 @@
+import { getNetwork } from './environment';
+
 export interface TokenMetadata {
   name: string;
   symbol: string;
@@ -5,10 +7,10 @@ export interface TokenMetadata {
 }
 
 export async function getTokenMetadata(_address: string): Promise<TokenMetadata> {
-  if (process.env.NETWORK === '0') {
+  if (getNetwork() === 'unspecified') {
     return generateFakeToken();
   }
-  throw new Error(`Unsupported network ${process.env.NETWORK}`);
+  throw new Error(`Unsupported network ${getNetwork()}`);
 }
 
 function generateFakeToken(): TokenMetadata {
