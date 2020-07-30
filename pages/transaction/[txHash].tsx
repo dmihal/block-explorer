@@ -8,6 +8,7 @@ import FuelLink from 'components/FuelLink';
 import SubHeader from 'components/SubHeader';
 import { getAssets, Asset } from 'data/assets';
 import { getTransaction, Transaction } from 'data/transactions';
+import { setupEnv } from 'data/environment';
 
 interface TransactionPageProps {
   transaction: Transaction | null;
@@ -106,7 +107,9 @@ const TransactionPage: NextPage<TransactionPageProps> = ({ transaction, assets }
 
 export default TransactionPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, res, req }) => {
+  setupEnv(req);
+
   const transaction = await getTransaction(params!.txHash as string);
 
   if (!transaction) {

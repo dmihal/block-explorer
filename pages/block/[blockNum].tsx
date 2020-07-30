@@ -7,6 +7,7 @@ import FuelLink from 'components/FuelLink';
 import SubHeader from 'components/SubHeader';
 import { getBlock, Block } from 'data/blocks';
 import { getRoot } from 'data/roots';
+import { setupEnv } from 'data/environment';
 
 interface BlockPageProps {
   block: Block | null;
@@ -90,7 +91,9 @@ const BlockPage: NextPage<BlockPageProps> = ({ block, rootSizes }) => {
 
 export default BlockPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, res, req }) => {
+  setupEnv(req);
+
   const block = await getBlock(parseInt(params!.blockNum as string));
 
   const rootSizes: { [hash: string]: number } = {};

@@ -9,6 +9,7 @@ import cardImg from 'assets/credit-card.png';
 import speedImg from 'assets/speed.png';
 import swapImg from 'assets/swap.png';
 import gasImg from 'assets/gas.png';
+import { setupEnv } from 'data/environment';
 
 interface NetworkPageProps {
   blockNum: number;
@@ -135,7 +136,8 @@ const NetworkPage: NextPage<NetworkPageProps> = ({ blockNum, numTx }) => {
 
 export default NetworkPage;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  setupEnv(req);
   const blockNum = await getNumBlocks();
 
   return { props: { blockNum, numTx: getTransactions().length } };

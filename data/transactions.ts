@@ -1,4 +1,4 @@
-import api from './api';
+import getAPI from './api';
 import { getBlock } from './blocks';
 
 export interface UTXO {
@@ -56,7 +56,7 @@ export function getTransactions() {
 }
 
 export async function getTransaction(hash: string) {
-  const tx = await api.getTransactionByHash(hash).catch(() => null);
+  const tx = await getAPI().getTransactionByHash(hash).catch(() => null);
 
   if (!tx) {
     console.log('cannot find transaction', hash);

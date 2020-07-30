@@ -8,6 +8,7 @@ import SubHeader from 'components/SubHeader';
 import { getAddress, Address } from 'data/addresses';
 import { getAssets, Asset } from 'data/assets';
 import { getTransaction, Transaction } from 'data/transactions';
+import { setupEnv } from 'data/environment';
 import emptyTray from 'assets/empty-tray.svg';
 
 interface AddressPageProps {
@@ -156,7 +157,9 @@ const _getTransaction = async (hash: string) => {
   return tx;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, res, req }) => {
+  setupEnv(req);
+
   const address = await getAddress(params!.address as string);
 
   if (!address) {

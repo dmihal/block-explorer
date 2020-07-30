@@ -9,6 +9,7 @@ import SubHeader from 'components/SubHeader';
 import Table from 'components/Table';
 import { getAssets, Asset } from 'data/assets';
 import { getRoot, Root } from 'data/roots';
+import { setupEnv } from 'data/environment';
 
 interface TableTX {
   index: number;
@@ -80,7 +81,9 @@ const RootPage: NextPage<RootPageProps> = ({ _root, assets }) => {
 
 export default RootPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, req, res }) => {
+  setupEnv(req);
+
   const _root = await getRoot(params!.rootHash as string);
 
   if (!_root) {

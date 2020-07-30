@@ -1,4 +1,4 @@
-import api from './api';
+import getAPI from './api';
 import { fromWei } from 'ethjs-unit';
 import { getTokenMetadata } from './ethereum';
 
@@ -34,9 +34,9 @@ export function formatValue(value: string, assetAddress: string) {
 export async function getAsset(addressOrId: string): Promise<Asset> {
   const address = addressOrId.length === 42
     ? addressOrId.toLowerCase()
-    : (await api.getToken(addressOrId)).toLowerCase();
+    : (await getAPI().getToken(addressOrId)).toLowerCase();
   const id = addressOrId.length === 42
-    ? await api.getTokenId(addressOrId)
+    ? await getAPI().getTokenId(addressOrId)
     : addressOrId;
 
   if (assets[address]) {

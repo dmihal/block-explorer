@@ -1,5 +1,13 @@
 import FuelAPI from '@fuel-js/api';
+import { getNetwork } from './environment';
 
-const api = new FuelAPI('unspecified');
+let api: FuelAPI | null = null;
 
-export default api;
+const getAPI = (): FuelAPI => {
+  if (!api) {
+    api = new FuelAPI(getNetwork());
+  }
+  return api;
+};
+
+export default getAPI;

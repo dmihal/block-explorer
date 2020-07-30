@@ -1,4 +1,4 @@
-import api from './api';
+import getAPI from './api';
 
 const ZERO_BLOCK = '0x0000000000000000000000000000000000000000000000000000000000000000';
 
@@ -33,7 +33,7 @@ function transformBlock(fuelBlock: any): Block {
 }
 
 export async function getBlock(blockNum: number): Promise<Block | null> {
-  const block = await api.getBlockByHeight(blockNum);
+  const block = await getAPI().getBlockByHeight(blockNum);
 
   if (!block) {
     console.log('cannot find block', blockNum);
@@ -44,16 +44,16 @@ export async function getBlock(blockNum: number): Promise<Block | null> {
 }
 
 export async function getBlocks() {
-  const state = await api.getState();
+  const state = await getAPI().getState();
   const numBlocks = state.properties.blockHeight().get().toNumber();
 
   return await Promise.all(
     [...new Array(numBlocks)].map((_: any, blockNum: number) =>
-      api.getBlockByHeight(blockNum).then((block: any) => transformBlock(block))
+      getAPI().getBlockByHeight(blockNum).then((block: any) => transformBlock(block))
     ));
 }
 
 export async function getNumBlocks() {
-  const state = await api.getState();
+  const state = await getAPI().getState();
   return state.properties.blockHeight().get().toNumber();
 }

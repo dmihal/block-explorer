@@ -1,4 +1,4 @@
-import api from './api';
+import getAPI from './api';
 
 export interface Root {
   hash: string;
@@ -30,14 +30,14 @@ function transformRoot(fuelRoot: any, transactions: string[] = []) {
 }
 
 export async function getRoot(hash: string): Promise<Root | null> {
-  const fuelRoot = await api.getRootByHash(hash);
+  const fuelRoot = await getAPI().getRootByHash(hash);
 
   if (!fuelRoot) {
     console.log('cannot find root', hash);
     return null;
   }
 
-  const transactions = await api.getTransactions(
+  const transactions = await getAPI().getTransactions(
     fuelRoot.getAddon().properties.blockHeight().get().toNumber(),
     fuelRoot.getAddon().properties.rootIndex().get().toNumber()
   );
