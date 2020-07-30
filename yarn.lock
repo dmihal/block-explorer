@@ -1000,13 +1000,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@fuel-js/api@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.1.4.tgz#b1f970f4b38bdb33a8cd695637d97ce06af1b556"
-  integrity sha512-8MreFU+hX2yUE+ebPu50pSzUXUPkTUi20qwcvIYll7zszdcw/Dt9De/h3mFpg+pG8LIX34WG5CqE20nRyPs4Tg==
+"@fuel-js/api@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@fuel-js/api/-/api-0.1.6.tgz#56b3534139465fb6e33ff09cbdb0f49c91ba1bea"
+  integrity sha512-Yvwzs8lxK29H9rvS9nx+fM31Qsk064Ii40HfOk11ZWmWoNMdMcyf9h2ss5rRKfSwH1Zry4EG86lPewt1IO9VcQ==
   dependencies:
     "@fuel-js/interface" "^0.0.9"
-    "@fuel-js/protocol" "^0.2.6"
+    "@fuel-js/protocol" "^0.2.8"
     "@fuel-js/utils" "^0.1.1"
 
 "@fuel-js/interface@^0.0.9":
@@ -1024,10 +1024,10 @@
     "@fuel-js/rolled" "^0.1.0"
     "@fuel-js/utils" "^0.1.0"
 
-"@fuel-js/protocol@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@fuel-js/protocol/-/protocol-0.2.6.tgz#3fea2fe78b73d77d57da21289092212e70c0beac"
-  integrity sha512-+RWJn37g0RQC0XoBrJglOg1qMvwh/53EpZyEIu62yr/fDqLyBzdYMJMkCZM5CNJ5G3HIleq/R3zpci2E98pCXA==
+"@fuel-js/protocol@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@fuel-js/protocol/-/protocol-0.2.8.tgz#0652ff5ba71fa6e57dbfd4cea0701c5101e22065"
+  integrity sha512-EA8ts1v8zQfhCmN/+2qig4VhChO8Frh+plqBSZDtkoNLzp3ny/s7WUG5H+kS007s6PbZ5dV8Qf1z46nuBJwDHg==
   dependencies:
     "@fuel-js/struct" "^0.1.6"
     "@fuel-js/utils" "^0.1.1"
